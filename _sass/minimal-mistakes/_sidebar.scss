@@ -174,7 +174,7 @@
 }
 .sidebar .author__name {
   font-family: $sans-serif;
-  font-size: $type-size-5;
+  font-size: $type-size-3;
 }
 
 .author__bio {
@@ -191,6 +191,7 @@
   display: table-cell;
   vertical-align: middle;
   font-family: $sans-serif;
+  font-size: $type-size-4;
   z-index: 20;
   cursor: pointer;
 

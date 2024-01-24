@@ -1,13 +1,10 @@
 ---
 layout: single
 title:  "블로그 축 개업"
-categories: coding
+categories: etc
 toc: true
-author_profile: false
+author_profile: true
 
-
-#sidebar:
-#    nav: "docs"
 
 ---
 
