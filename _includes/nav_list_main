@@ -13,15 +13,26 @@
       <li>
         <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
         <span class="nav__sub-title">CS 지식</span>
+
         <ul>
             {% for category in site.categories %}
                 {% if category[0] == "algorithm" %}
-                    <li><a href="/categories/algorithm" class="">알고리즘 구현 (with C++) ({{category[1].size}})</a></li>
+                    <li><a href="/categories/algorithm" class="">알고리즘 ({{category[1].size}})</a></li>
                 {% endif %}
             {% endfor %}
         </ul>
 
+        <ul>
+            {% for category in site.categories %}
+                {% if category[0] == "datastructure" %}
+                    <li><a href="/categories/datastructure" class="">자료구조 ({{category[1].size}})</a></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+
+
         <span class="nav__sub-title"> 유니티 </span>
+
 
         <span class="nav__sub-title"> 기타 </span>
         <ul>
