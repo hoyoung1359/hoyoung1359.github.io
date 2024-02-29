@@ -9,4 +9,4 @@ typora-root-url:../
 ---
 
 # 2024년 1월 16일 블로그 생성
-![minimal_mistakes](/images/minimal_mistakes.png)
+![minimal_mistakes](/images/2024-01-16-first-post/minimal_mistakes.png)
