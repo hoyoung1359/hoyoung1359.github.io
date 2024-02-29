@@ -29,7 +29,21 @@
         </ul>
 
 
-        <span class="nav__sub-title"> 유니티 </span>
+        <span class="nav__sub-title"> 게임제작 </span>
+        <ul>
+            {% for category in site.categories %}
+                {% if category[0] == "unity" %}
+                    <li><a href="/categories/unity" class="">유니티 ({{category[1].size}})</a></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+        <ul>
+            {% for category in site.categories %}
+                {% if category[0] == "unreal" %}
+                    <li><a href="/categories/unreal" class="">언리얼 ({{category[1].size}})</a></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
 
         <span class="nav__sub-title"> 문제풀이 </span>
         <ul>

@@ -1,7 +1,7 @@
 ---
 layout: single
 title:  "유니티 게임제작 [MiniGungeon]"
-categories: game
+categories: unity
 toc: true
 author_profile: true
 

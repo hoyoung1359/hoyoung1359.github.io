@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "블로그 축 개업"
+title:  "블로그 시작"
 categories: etc
 toc: true
 author_profile: true
