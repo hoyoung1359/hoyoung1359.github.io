@@ -4,9 +4,20 @@ title:  "블로그 시작"
 categories: etc
 toc: true
 author_profile: true
-typora-root-url:../
-
+typora-root-url: ../
 ---
 
 # 2024년 1월 16일 블로그 생성
+
+
+
+서버로 블로그 변동사항 테스트: bundle exec jekyll serve --livereload
+
+폰트변경: 구글폰트 minimal-mistakes.scss 밑에 import한 후 _variable.scss 에서 글시체 설정
+
+​						
+
+jekyll 테마:
+
 ![minimal_mistakes](/images/2024-01-16-first-post/minimal_mistakes.png)
+
