@@ -14,6 +14,8 @@ typora-root-url: ../
 
 폰트변경: 구글폰트 minimal-mistakes.scss 밑에 import한 후 _variable.scss 에서 글시체 설정
 
+_sidebar.scss: .author_avatar에서 프로필 사진 크기 변경가능
+
 ​						
 
 jekyll 테마:
