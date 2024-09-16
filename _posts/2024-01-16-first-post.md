@@ -1,17 +1,16 @@
 ---
 layout: single
-title:  "블로그 시작"
-categories: etc
+title:  "블로그"
+categories: blog
 toc: true
 author_profile: true
 typora-root-url: ../
 ---
 
-# 2024년 1월 16일 블로그 생성
+# 블로그 생성
 
 
-
-서버로 블로그 변동사항 테스트: bundle exec jekyll serve --livereload
+로컬 서버로 블로그 변동사항 테스트: bundle exec jekyll serve --livereload
 
 폰트변경: 구글폰트 minimal-mistakes.scss 밑에 import한 후 _variable.scss 에서 글시체 설정
 
