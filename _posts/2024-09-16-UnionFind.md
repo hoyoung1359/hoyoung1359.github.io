@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "특강 3. Union Find"
+title:  "[알고리즘 특강] 3. Union Find"
 categories: algorithm
 tags: [SWEA, C++, UNIONFIND]
 toc: true
@@ -30,3 +30,85 @@ Union-Find 기본 구현
 
 initialize
 parent[x] = x 가 속한 집합의 번호 (자기자신) 으로 초기화한다.
+
+```c++
+int parent[MAX_SIZE];
+
+void initialize() {
+	for(int x=0; x < MAX_SIZE; x++)
+		parent[x] = x;
+}
+```
+
+Find
+
+Node x의 Root를 찾는다.
+부모 노드가 자기 자신일 때 까지 타고 올라간다. (재귀 함수)
+
+```c++
+int Find(int x) {
+	if( x == parent[x] )
+		return x;
+	else
+		return Find(parent[x]);
+}
+```
+
+Union
+
+Node a와 Node b를 합친다.
+b의 root의 부모를 a의 root로 연결한다.
+
+```
+void Union(int a, int b) {
+	int A = Find(a); // root of a
+	int B = Find(b); // root of b
+	
+	parent[B] = A;
+}
+```
+
+![image-20240920210116334](../images/2024-09-16-UnionFind/image-20240920210116334.png)
+
+Union-Find with path Compression
+
+Find에서 root를 찾는 경우 최악의 상황에서 O(N) 만큼의 계산 요구.
+
+EX) ![image-20240920210154854](../images/2024-09-16-UnionFind/image-20240920210154854.png)
+
+에서 Find(3)의 경우 모든 노드 탐색 요구
+
+-> 경로 압축 방법(Path Compression)이 필요
+
+Find는 Depth가 낮을 수록 유리함
+
+->매번 Find할 때 Depth가2 이상이면 Path compression 수행
+
+![image-20240920210326899](../images/2024-09-16-UnionFind/image-20240920210326899.png)
+
+Path Compression 수행 시 Find에 대한 계산 복잡도 단축
+특징: Root node를 원하는 값으로 강제할 수 있다.
+
+Union-by-rank (union 연산 최적화)
+
+rank에 트리의 높이(rank)를 저장
+항상 높이(rank)가 더 낮은 트리를 높은 트리 밑에 넣는다.
+
+```c++
+void Union(int a, int b) {
+	int A = Find(a); // root of a
+	int B = Find(b); // root of b
+	
+	if (A==B)
+		return;
+	if(rank[A] < rank[B]) 
+		parent[A] = B;
+    else if (rank[A] > rank[B])
+        parent[B] = A;
+    else {	// rank[A] == rank[B]
+        parent[B] = A;
+        rank[A]++;
+    }  
+}
+```
+

@@ -1,13 +1,13 @@
 ---
 layout: single
-title:  "블로그"
+title:  "깃허브 블로그"
 categories: blog
 toc: true
 author_profile: true
 typora-root-url: ../
 ---
 
-# 블로그 생성
+# 깃허브 블로그 생성
 
 
 로컬 서버로 블로그 변동사항 테스트: bundle exec jekyll serve --livereload
@@ -16,9 +16,11 @@ typora-root-url: ../
 
 _sidebar.scss: .author_avatar에서 프로필 사진 크기 변경가능
 
+이미지: /assets/images 에 저장후 추가
+
 ​						
 
 jekyll 테마:
 
-![minimal_mistakes](/images/2024-01-16-first-post/minimal_mistakes.png)
+![minimal_mistakes](/assets/images/2024-01-16-first-post/minimal_mistakes.png)
 
