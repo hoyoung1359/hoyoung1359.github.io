@@ -4,6 +4,9 @@ title:  "깃허브 블로그"
 categories: blog
 toc: true
 author_profile: true
+toc: true
+toc_sticky: true
+toc_label: 목차
 typora-root-url: ../
 ---
 
@@ -16,7 +19,13 @@ typora-root-url: ../
 
 _sidebar.scss: .author_avatar에서 프로필 사진 크기 변경가능
 
+_variable.scss: x-large 조정, 본문 간격 조정
+
 이미지: /assets/images 에 저장후 추가
+
+toc: 목차
+toc_sticky: 목차 고정
+tock_labe: 목차 이름(아이콘도 변경가능하다고 함)
 
 ​						
 
