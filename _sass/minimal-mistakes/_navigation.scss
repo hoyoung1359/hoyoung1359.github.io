@@ -236,6 +236,8 @@
 
     a {
       position: relative;
+      
+      font-family: $bonmoon; // 카테고리 검색 태그 글씨체
 
       &:before {
         content: "";
@@ -442,6 +444,7 @@
   font-size: 1.25rem;
 
   a {
+    font-family: $sans-serif;
     color: inherit;
   }
 
