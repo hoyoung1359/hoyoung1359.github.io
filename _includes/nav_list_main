@@ -69,6 +69,13 @@
                 {% endif %}
             {% endfor %}
         </ul>
+        <ul>
+            {% for category in site.categories %}
+                {% if category[0] == "english" %}
+                    <li><a href="/categories/english" class="">영어 단어({{category[1].size}})</a></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
 
       </li>
       
