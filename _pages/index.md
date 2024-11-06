@@ -1,8 +1,9 @@
 ---
 layout: single # 원하는 레이아웃, 예: single, splash 등
-title: "블로그에 오신 것을  환영합니다"
+title: "Hello, World!"
 permalink: /
+author_profile: true
+sidebar_main: true
 ---
 
-블로그 메인 화면에 표시할 내용을 작성합니다.  
- 예를 들어 소개 문구나 중요 공지사항 등을 여기에 입력할 수 있습니다.
+개발, 프로젝트, 영상 편집
