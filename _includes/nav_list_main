@@ -29,18 +29,18 @@
         </ul>
 
 
-        <span class="nav__sub-title"> 게임제작 </span>
+        <span class="nav__sub-title"> 프로젝트 </span>
         <ul>
             {% for category in site.categories %}
-                {% if category[0] == "unity" %}
-                    <li><a href="/categories/unity" class="">유니티 ({{category[1].size}})</a></li>
+                {% if category[0] == "game" %}
+                    <li><a href="/categories/game" class="">게임제작 ({{category[1].size}})</a></li>
                 {% endif %}
             {% endfor %}
         </ul>
         <ul>
             {% for category in site.categories %}
-                {% if category[0] == "unreal" %}
-                    <li><a href="/categories/unreal" class="">언리얼 ({{category[1].size}})</a></li>
+                {% if category[0] == "web" %}
+                    <li><a href="/categories/web" class="">웹개발 ({{category[1].size}})</a></li>
                 {% endif %}
             {% endfor %}
         </ul>
@@ -72,7 +72,7 @@
         <ul>
             {% for category in site.categories %}
                 {% if category[0] == "english" %}
-                    <li><a href="/categories/english" class="">영어 단어({{category[1].size}})</a></li>
+                    <li><a href="/categories/english" class="">영어단어({{category[1].size}})</a></li>
                 {% endif %}
             {% endfor %}
         </ul>

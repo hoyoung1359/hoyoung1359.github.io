@@ -107,8 +107,8 @@ author:
   name             : "Baymax"
   avatar           : "/assets/images/hyo.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "열심히 **화이팅** "
-  location         : "South Korea"
-  email            : "hoyoung1359@yonsei.ac.kr"
+  location         : "Seoul, Korea"
+  # email            : "hoyoung1359@yonsei.ac.kr"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"

@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "깃허브 블로그"
+title:  "[깃허브 블로그] 블로그 생성"
 categories: blog
 toc: true
 author_profile: true
@@ -50,7 +50,7 @@ _variable.scss: x-large 조정, 본문 간격 조정
 
 ​						
 
-jekyll 테마:
+jekyll 테마: minimal-mistakes
 
 <img src="/assets/images/2024-01-16-first-post/minimal_mistakes.png" alt="minimal_mistakes" style="zoom:80%;" />
 
