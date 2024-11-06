@@ -1,4 +1,3 @@
-# _pages/index.md
 ---
 layout: single # 원하는 레이아웃, 예: single, splash 등
 title: "블로그에 오신 것을  환영합니다"
