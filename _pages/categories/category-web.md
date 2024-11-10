@@ -1,11 +1,11 @@
 ---
-title: "영상편집"
+title: "웹개발"
 layout: archive
-permalink: categories/video
+permalink: categories/web
 author_profile: true
 sidebar_main: true
 ---
 
 
-{% assign posts = site.categories.video %}
+{% assign posts = site.categories.web %}
 {% for post in posts %} {% include archive-single.html type=page.entries_layout %} {% endfor %}
