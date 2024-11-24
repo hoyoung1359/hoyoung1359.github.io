@@ -6,7 +6,17 @@ author_profile: true
 sidebar_main: true
 ---
 
+  
 
+​    
+
+  
+
+  
+
+
+
+![강](../assets/images/index/강-1732427707593-4.jpg)
 
 1. Python
 
@@ -18,7 +28,7 @@ sidebar_main: true
 
     ```c
     #include <stdio.h>
-
+    
     int main() {
         printf("Hello, world!\n");
         return 0;
