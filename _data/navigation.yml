@@ -1,7 +1,15 @@
 # main links
 main:
   - title: "카테고리"
-    url: /categories/
+    url: /categories/  
+    sublinks:
+      - title: "게임"
+        url: /categories/game/
+      - title: "웹개발"
+        url: /categories/web/
+      - title: "기타"
+        url: /categories/etc/
+
   - title: "태그"
     url: /tags/
   - title: "검색"

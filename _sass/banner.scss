@@ -1,0 +1,185 @@
+.top-banner {
+    text-align: center; /* 배너 중앙 정렬 */
+    margin-bottom: 20px; /* 아래 여백 */
+  }
+  
+.top-banner img {
+  width: 100%; /* 배너 너비 */
+  height: 80%; /* 이미지 비율 유지 */
+  border-radius: 10px; /* 모서리 둥글게 */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+  opacity: 0.7; /* 투명도 설정 (0.0 ~ 1.0) */
+}
+ 
+.breadcrumbs {
+  margin-top: 1em; /* Breadcrumbs와 Initial Content 사이 간격 */
+}
+
+
+.dropdown {
+  position: relative;
+  &:hover .dropdown-menu {
+    display: block; /* 마우스를 올리면 드롭다운 메뉴 표시 */
+  }
+}
+
+.dropdown-toggle {
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  display: none; /* 기본적으로 숨김 */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  z-index: 10; /* 다른 요소 위에 표시 */
+}
+
+.dropdown-menu li {
+  padding: 10px;
+
+  a {
+    text-decoration: none;
+    color: #333;
+
+    &:hover {
+      color: #007bff; /* 링크 색상 변경 */
+    }
+  }
+  padding: 10px;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block; /* 마우스를 올리면 표시 */
+}
+
+.visible-links {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  overflow: hidden;
+
+  li {
+    -webkit-box-flex: 0;
+    -ms-flex: none;
+    flex: none;
+    display: list-item;
+    text-align: -webkit-match-parent;
+  }
+
+  a {
+    position: relative;
+
+    &:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 4px;
+      background: $primary-color;
+      width: 100%;
+      -webkit-transition: $global-transition;
+      transition: $global-transition;
+      -webkit-transform: scaleX(0) translate3d(0, 0, 0);
+      transform: scaleX(0) translate3d(0, 0, 0); // hide
+    }
+
+    &:hover:before {
+      -webkit-transform: scaleX(1);
+      -ms-transform: scaleX(1);
+      transform: scaleX(1); // reveal
+    }
+  }
+}
+
+
+.hidden-links {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 15px;
+  padding: 5px;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+  background: $background-color;
+  -webkit-box-shadow: 0 2px 4px 0 rgba(#000, 0.16),
+    0 2px 10px 0 rgba(#000, 0.12);
+  box-shadow: 0 2px 4px 0 rgba(#000, 0.16), 0 2px 10px 0 rgba(#000, 0.12);
+
+  &.hidden {
+    display: none;
+  }
+
+  a {
+    margin: 0;
+    padding: 10px 20px;
+    font-size: $type-size-5;
+
+    &:hover {
+      color: $masthead-link-color-hover;
+      background: $navicon-link-color-hover;
+    }
+  }
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: -11px;
+    right: 10px;
+    width: 0;
+    border-style: solid;
+    border-width: 0 10px 10px;
+    border-color: $border-color transparent;
+    display: block;
+    z-index: 0;
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    width: 0;
+    border-style: solid;
+    border-width: 0 10px 10px;
+    border-color: $background-color transparent;
+    display: block;
+    z-index: 1;
+  }
+
+  li {
+    display: block;
+    border-bottom: 1px solid $border-color;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}
+
+//hidden link
+
+// .main{
+//   margin-top: 10em; /* Breadcrumbs와 Initial Content 사이 간격 */
+// 
+// #main {
+  
+//   @include clearfix;
+
+//   margin-top: 1em;
+
+// .masthead h1,
+// .masthead p {
+//   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* 텍스트 그림자 */
+// }

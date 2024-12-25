@@ -1,5 +1,5 @@
 ---
-layout: single # 원하는 레이아웃, 예: single, splash 등
+layout: single # 원하는 레이아웃, 예: single, splash 
 title: "Hello, World!"
 permalink: /
 author_profile: true
@@ -16,7 +16,7 @@ sidebar_main: true
 
 
 
-![강](../assets/images/index/강-1732427707593-4.jpg)
+<!-- ![강](../assets/images/index/강-1732427707593-4.jpg) -->
 
 1. Python
 
