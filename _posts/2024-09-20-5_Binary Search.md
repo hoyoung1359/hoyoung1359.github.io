@@ -63,19 +63,18 @@ int main() {
 }
 ```
 
-# lower bound
+# Lower bound
 
-이분탐색을 이용해 lower bound를 구현할 수 있다.
-lower bound: 목표보다 크거나 같은 값이 최초로 나오는 위치  
+이분탐색을 이용해 lower bound를 구현할 수 있다.  
+**lower bound:** 목표보다 크거나 같은 값이 최초로 나오는 위치  
 
 예시  
 다음 배열에서 20과 50의 lower bound를 구하면,
-20보다 크거나 같은 값이 최초로 나오는 위치는 1이고,   
-50보다 크거나 같은 값이 최초로 나오는 위치는 5이다
+20보다 크거나 같은 값이 최초로 나오는 위치는 1이고, 50보다 크거나 같은 값이 최초로 나오는 위치는 5이다
 
 
 
-# lower bound 구현
+# Lower bound 구현
 
 C++ 에서 lower blund를 구현
 
@@ -124,7 +123,7 @@ int main() {
 
 
 
-# upper bound
+# Upper bound
 
 이분 탐색을 이용해 upper bound를 구현할 수 있다.  
 upper bound: 목표보다 크거나 같은 값이 최초로 나오는 위치
@@ -134,7 +133,7 @@ upper bound: 목표보다 크거나 같은 값이 최초로 나오는 위치
 20보다 큰 값이 최초로 나오는 위치는 4이고,   
 50보다 큰 값이 최초로 나오는 위치는 5이다
 
-# upper bound 구현
+# Upper bound 구현
 
 C++ 에서 lower blund를 구현
 
@@ -186,7 +185,7 @@ int main() {
 최적화 문제: f(x) = True가 되는 x의 최대값 구하기  
 결정 문제: f(x) = True가 되는 어떤 x  
 
-가능한 모든 x값마다 f(x)가 True인지 검사하여 True중에서 최소/최대값을 고르면 최적화 문제를 결정 문제로 풀 수 있다.
+가능한 모든 x값마다 f(x)가 True인지 검사하여 True중에서 최소/최대값을 고르면 최적화 문제를 결정 문제로 풀 수 있다.  
 x1 < x2 이고 f(x1) = True 면, f(x2) = True 또는 f(x2) = True 면 f(x1) = True 라는 조건을 만족.
 f(x)의 결과값이 정렬된 형태이기 때문에 이분탐색 아이디어를 적용하여 문제를 풀 수 있다.   
 
