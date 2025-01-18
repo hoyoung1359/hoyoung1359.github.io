@@ -15,21 +15,24 @@
           {%- for link in site.data.navigation.main -%}
             {% if link.sublinks %}
               <li class="dropdown">
-                {% if link.url %}
-                  <a href="{{ link.url | relative_url }}">{{ link.title }} <i class="fas fa-caret-down"></i></a>
-                {% else %}
-                  <a href="#">{{ link.title }} <i class="fas fa-caret-down"></i></a>
-                {% endif %}
+                <a href="{{ link.url | relative_url }}">
+                  {{ link.title }} 
+                  <i class="fas fa-caret-down" aria-hidden="true"></i>
+                </a>
                 <ul class="dropdown-menu">
                   {% for sublink in link.sublinks %}
-                    <li><a href="{{ sublink.url | relative_url }}">{{ sublink.title }}</a></li>
+                    <li>
+                      <a href="{{ sublink.url | relative_url }}">{{ sublink.title }}</a>
+                    </li>
                   {% endfor %}
                 </ul>
               </li>
             {% else %}
-              <li><a href="{{ link.url | relative_url }}">{{ link.title }}</a></li>
+              <li>
+                <a href="{{ link.url | relative_url }}">{{ link.title }}</a>
+              </li>
             {% endif %}
-          {% endfor %}
+          {%- endfor -%}
         </ul>
         {% if site.search == true %}
         <button class="search__toggle" type="button">

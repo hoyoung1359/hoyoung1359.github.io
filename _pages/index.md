@@ -10,13 +10,9 @@ sidebar_main: true
 
 ​    
 
-  
-
-  
 
 
 
-<!-- ![강](../assets/images/index/강-1732427707593-4.jpg) -->
 
 1. Python
 
