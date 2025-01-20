@@ -16,55 +16,68 @@
 
 
 .masthead {
-  //position: relative;
+  position: relative;  // 명시적으로 position 설정
   border-bottom: 1px solid $border-color;
   -webkit-animation: $intro-transition;
   animation: $intro-transition;
   -webkit-animation-delay: 0.15s;
   animation-delay: 0.15s;
   z-index: 20;
-
+  margin-bottom: 2em;  // 컨텐츠와의 간격 추가
   
   &::before {
-    content: ""; /* 가상 요소 생성 */
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 350px; /* 헤더 높이 */
-    background-image: url('../../assets/images/강_배너.jpg'); /* 배경 이미지 */
-    background-size: cover; /* 이미지 크기 설정 */
-    background-position: center; /* 이미지 가운데 정렬 */
-    opacity: 0.8; /* 투명도 설정 (0.0 ~ 1.0) */
-    z-index: -1; /* 자식 요소 뒤로 배치 */
-    border-radius: 10px; /* 모서리 둥글게 */
+    height: 300px;
+    background-image: url('../../assets/images/강_배너.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.8;
+    z-index: -1;
+    border-radius: 10px;
+    transition: opacity 0.3s ease;  // 호버 효과를 위한 트랜지션
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);  // 그림자 효과 추가
+  }
+
+  // 호버 시 배경 이미지 약간 진해지는 효과
+  &:hover::before {
+    opacity: 0.9;
   }
 
   &__inner-wrap {
     @include clearfix;
     margin-left: auto;
     margin-right: auto;
-    padding: 1em;
+    padding: 1.5em;  // 패딩 살짝 증가
     max-width: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
     justify-content: space-between;
+    align-items: center;  // 수직 정렬 개선
     font-family: $sans-serif-narrow;
+    backdrop-filter: blur(5px);  // 블러 효과 추가
+    background-color: rgba(255, 255, 255, 0.6);  // 배경색 약간 투명하게
+    border-radius: 10px;
+    transition: background-color 0.3s ease;  // 부드러운 전환 효과
 
+    // 호버 시 배경 약간 더 불투명하게
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.7);
+    }
 
     @include breakpoint($x-large) {
       max-width: $max-width;
     }
 
     nav {
-      z-index: 10;
+      z-index: 99999;  // z-index 값 증가
     }
 
     a {
       text-decoration: none;
+      transition: color 0.2s ease;  // 링크 호버 효과
     }
   }
 }
@@ -74,14 +87,17 @@
 }
 
 .site-title {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-item-align: center;
   align-self: center;
   font-weight: bold;
   font-size: $type-size-3;
-  // z-index: 20;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);  // 텍스트 그림자 추가
+  
+  &:hover {
+    text-decoration: none;
+    transform: scale(1.02);  // 호버 시 살짝 커지는 효과
+    transition: transform 0.2s ease;
+  }
 }
 
 .site-subtitle {
@@ -125,12 +141,14 @@
 
 .visible-links {
   display: flex;
+  position: relative;  // 추가
+  z-index: 9999;      // 최상위로 올림
   
   li {
     position: relative;
     
-    // 기본 링크 스타일
     a {
+      position: relative;  // 추가
       color: $masthead-link-color;
       text-decoration: none;
       padding: 1rem;
@@ -141,67 +159,76 @@
       }
     }
     
-    // 드롭다운 관련 스타일
     &.dropdown {
       position: relative;
       
       &:hover {
         .dropdown-menu {
-          visibility: visible;
+          display: block;  // visibility 대신 display 사용
           opacity: 1;
           transform: translateY(0);
-          pointer-events: auto;
         }
       }
     }
     
-    // 드롭다운 메뉴 스타일
     .dropdown-menu {
-      visibility: hidden;
+      display: none;      // visibility 대신 display 사용
       position: absolute;
       top: 100%;
       left: 0;
-      width: 200px;
-      background-color: rgba(255, 255, 255, 0.95);
+      min-width: 200px;
+      background-color: #fff;  // 불투명한 배경
       border: 1px solid rgba(0,0,0,0.15);
       border-radius: 4px;
       box-shadow: 0 6px 12px rgba(0,0,0,0.175);
-      opacity: 0;
-      transform: translateY(-10px);
-      transition: all 0.3s ease;
-      pointer-events: none;
-      z-index: 9999;
+      z-index: 9999;     // 최상위로 올림
       
       li {
         display: block;
-        width: 100%;
         margin: 0;
-        background-color: rgba(255, 255, 255, 0.95);
+        padding: 0;
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+        
+        &:last-child {
+          border-bottom: none;
+        }
         
         a {
           padding: 0.8rem 1rem;
-          display: block;
-          width: 100%;
-          color: #333;
-          border: none;
+          color: $text-color;
+          font-size: 0.9em;
+          font-weight: normal;
+          white-space: nowrap;
           
           &:hover {
-            background-color: rgba(248, 249, 250, 0.95);
-            color: #007bff;
+            background-color: $primary-color;
+            color: #fff;
           }
         }
       }
+      
+      // 드롭다운 애니메이션
+      animation: dropdown-animation 0.2s ease;
+      transform-origin: top center;
     }
   }
 }
 
-@keyframes fadeIn {
-  from {
+// 드롭다운 애니메이션 정의
+@keyframes dropdown-animation {
+  0% {
     opacity: 0;
     transform: translateY(-10px);
   }
-  to {
+  100% {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+// 네비게이션 전체를 최상위로
+.greedy-nav {
+  position: relative;
+  z-index: 9999;
+  background: transparent;  // 배경 투명하게
 }

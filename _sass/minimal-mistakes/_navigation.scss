@@ -226,19 +226,64 @@
     -webkit-box-flex: 1;
     -ms-flex: 1;
     flex: 1;
-    overflow: hidden;
-
+    overflow: visible;
+    
     li {
       -webkit-box-flex: 0;
       -ms-flex: none;
       flex: none;
+      position: relative;
+      
+      &.dropdown {
+        &:hover {
+          .dropdown-menu {
+            display: block;
+          }
+        }
+        
+        .dropdown-menu {
+          display: none;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          min-width: 200px;
+          background: #fff;
+          border: 1px solid $border-color;
+          border-radius: 4px;
+          box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+          z-index: 99999;
+          
+          li {
+            display: block;
+            border-bottom: 1px solid $border-color;
+            
+            &:last-child {
+              border-bottom: none;
+            }
+            
+            a {
+              display: block;
+              padding: 0.7em 1em;
+              font-size: 0.9em;
+              
+              &:before {
+                display: none;
+              }
+              
+              &:hover {
+                background: $primary-color;
+                color: #fff;
+              }
+            }
+          }
+        }
+      }
     }
 
     a {
       position: relative;
+      font-family: $bonmoon;
       
-      font-family: $bonmoon; // 카테고리 검색 태그 글씨체
-
       &:before {
         content: "";
         position: absolute;
@@ -250,13 +295,13 @@
         -webkit-transition: $global-transition;
         transition: $global-transition;
         -webkit-transform: scaleX(0) translate3d(0, 0, 0);
-        transform: scaleX(0) translate3d(0, 0, 0); // hide
+        transform: scaleX(0) translate3d(0, 0, 0);
       }
 
       &:hover:before {
         -webkit-transform: scaleX(1);
         -ms-transform: scaleX(1);
-        transform: scaleX(1); // reveal
+        transform: scaleX(1);
       }
     }
   }
@@ -567,7 +612,7 @@
   }
 
   li ul li ul li ul li ul > li a {
-    padding-left: 2.75rem;
+    padding-left: 2.75rem
   }
 
   li ul li ul li ul li ul li ul > li a {
