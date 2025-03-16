@@ -3,15 +3,20 @@ main:
   - title: "카테고리"
     url: /categories/  
     sublinks:
-      - title: "게임"
-        url: /categories/game/
-      - title: "웹개발"
-        url: /categories/web/
-      - title: "기타"
-        url: /categories/etc/
-
+      - title: "알고리즘"
+        url: /categories/algorithm
+      - title: "백준"
+        url: /categories/baekjoon
+      - title: "블로그"
+        url: /categories/blog
+      - title: "영상"
+        url: /categories/video
+      - title: "게임제작"
+        url: /categories/game
+      
   - title: "태그"
     url: /tags/
+
   - title: "검색"
     url: /search/
 

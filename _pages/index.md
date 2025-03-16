@@ -47,7 +47,7 @@ classes: wide
   </div>
 
   <!-- 주요 카테고리 섹션 - 웜톤 배경색 변경 -->
-  <div style="background: linear-gradient(135deg, #fff0e6, #ffe0cc); padding: 30px; border-radius: 12px; margin-bottom: 30px; box-shadow: 0 3px 10px rgba(0,0,0,0.08);">
+  <!-- <div style="background: linear-gradient(135deg, #fff0e6, #ffe0cc); padding: 30px; border-radius: 12px; margin-bottom: 30px; box-shadow: 0 3px 10px rgba(0,0,0,0.08);">
     <h2 style="margin-top: 0; margin-bottom: 25px; color: #5a3e2f; font-size: 1.8em; border-bottom: 2px solid rgba(230, 126, 34, 0.2); padding-bottom: 10px;">주요 카테고리</h2>
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
       <div style="text-align: center; padding: 25px; border-radius: 8px; background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(5px); transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 8px 15px rgba(0,0,0,0.1)';" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none';">
@@ -66,6 +66,31 @@ classes: wide
         <span style="font-size: 2.5em; margin-bottom: 15px; display: block; color: #e67e22;">🔍</span>
         <h3 style="font-size: 1.4em; margin: 10px 0; color: #5a3e2f;">기타</h3>
         <a href="/categories/etc" class="btn" style="display: inline-block; padding: 8px 25px; margin-top: 15px; border-radius: 25px; background-color: #e67e22; color: white; text-decoration: none; font-weight: 500; transition: background-color 0.3s ease;">더보기</a>
+      </div>
+    </div>
+  </div> -->
+
+  <!-- 음악 플레이어 섹션 -->
+  <div style="background: linear-gradient(135deg, #fff0e6, #ffe0cc); padding: 30px; border-radius: 12px; margin-bottom: 30px; box-shadow: 0 3px 10px rgba(0,0,0,0.08);">
+    <h2 style="margin-top: 0; margin-bottom: 25px; color: #5a3e2f; font-size: 1.8em; border-bottom: 2px solid rgba(230, 126, 34, 0.2); padding-bottom: 10px;">
+      <span style="margin-right: 10px;">🎵</span>
+    </h2>
+    
+    <div style="background: rgba(255, 255, 255, 0.7); padding: 20px; border-radius: 8px; backdrop-filter: blur(5px);">
+      <!-- 유튜브 뮤직 플레이어 -->
+      <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px;">
+        <iframe 
+          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 8px;"
+          src="https://www.youtube.com/embed/FSa4tVouRIc?si=OXaZAdw2rtqyLjvU&autoplay=1"
+          title="YouTube Music Player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+      
+      <div style="margin-top: 15px; text-align: center; color: #5a3e2f; font-size: 0.9em;">
+        <p style="margin: 5px 0;">🎧 집중을 위한 플레이리스트</p>
       </div>
     </div>
   </div>
