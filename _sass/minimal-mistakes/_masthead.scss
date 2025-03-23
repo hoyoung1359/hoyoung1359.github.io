@@ -16,30 +16,33 @@
 
 
 .masthead {
-  position: relative;  // 명시적으로 position 설정
+  position: relative;
   border-bottom: 1px solid $border-color;
   -webkit-animation: $intro-transition;
   animation: $intro-transition;
   -webkit-animation-delay: 0.15s;
   animation-delay: 0.15s;
   z-index: 20;
-  margin-bottom: 2em;  // 컨텐츠와의 간격 추가
+  margin-bottom: 2em;
+  width: 100%;  // 전체 너비 사용
   
   &::before {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
+    right: 0;  // 오른쪽 끝까지
     width: 100%;
-    height: 300px;
+    height: 100%;  // 부모 요소의 전체 높이
     background-image: url('../../assets/images/강_배너.jpg');
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
     opacity: 0.8;
     z-index: -1;
     border-radius: 10px;
-    transition: opacity 0.3s ease;  // 호버 효과를 위한 트랜지션
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);  // 그림자 효과 추가
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
 
   // 호버 시 배경 이미지 약간 진해지는 효과
@@ -51,24 +54,28 @@
     @include clearfix;
     margin-left: auto;
     margin-right: auto;
-    padding: 1.5em;  // 패딩 살짝 증가
+    padding: 1em;
     max-width: 100%;
     display: flex;
     justify-content: space-between;
-    align-items: center;  // 수직 정렬 개선
+    align-items: center;
     font-family: $sans-serif-narrow;
-    backdrop-filter: blur(5px);  // 블러 효과 추가
-    background-color: rgba(255, 255, 255, 0.6);  // 배경색 약간 투명하게
+    backdrop-filter: blur(5px);
+    background-color: rgba(255, 255, 255, 0.6);
     border-radius: 10px;
-    transition: background-color 0.3s ease;  // 부드러운 전환 효과
-
-    // 호버 시 배경 약간 더 불투명하게
-    &:hover {
-      background-color: rgba(255, 255, 255, 0.7);
-    }
-
+    transition: all 0.3s ease;
+    
     @include breakpoint($x-large) {
       max-width: $max-width;
+    }
+
+    // 화면 크기별 패딩 조정
+    @include breakpoint($small) {
+      padding: 1.5em;
+    }
+    
+    @include breakpoint($medium) {
+      padding: 2em;
     }
 
     nav {
@@ -79,6 +86,39 @@
       text-decoration: none;
       transition: color 0.2s ease;  // 링크 호버 효과
     }
+  }
+}
+
+// 화면 크기별 masthead 높이 조정
+@include breakpoint($small) {
+  .masthead {
+    height: 250px;  // 작은 화면에서의 높이
+  }
+}
+
+@include breakpoint($medium) {
+  .masthead {
+    height: 300px;  // 중간 화면에서의 높이
+  }
+}
+
+@include breakpoint($large) {
+  .masthead {
+    height: 350px;  // 큰 화면에서의 높이
+  }
+}
+
+// 컨테이너 최대 너비 설정
+.masthead__inner-wrap {
+  width: 100%;
+  margin: 0 auto;
+  
+  @include breakpoint($large) {
+    max-width: $large;
+  }
+  
+  @include breakpoint($x-large) {
+    max-width: $x-large;
   }
 }
 
@@ -141,14 +181,14 @@
 
 .visible-links {
   display: flex;
-  position: relative;  // 추가
-  z-index: 9999;      // 최상위로 올림
+  position: relative;
+  z-index: 9999;
   
   li {
     position: relative;
     
     a {
-      position: relative;  // 추가
+      position: relative;
       color: $masthead-link-color;
       text-decoration: none;
       padding: 1rem;
@@ -164,7 +204,7 @@
       
       &:hover {
         .dropdown-menu {
-          display: block;  // visibility 대신 display 사용
+          display: block;
           opacity: 1;
           transform: translateY(0);
         }
@@ -172,53 +212,113 @@
     }
     
     .dropdown-menu {
-      display: none;      // visibility 대신 display 사용
+      display: none;
       position: absolute;
       top: 100%;
       left: 0;
-      min-width: 200px;
-      background-color: #fff;  // 불투명한 배경
-      border: 1px solid rgba(0,0,0,0.15);
-      border-radius: 4px;
-      box-shadow: 0 6px 12px rgba(0,0,0,0.175);
-      z-index: 9999;     // 최상위로 올림
+      min-width: 220px;
+      background-color: #fff;
+      border: 1px solid rgba(0,0,0,0.1);
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      z-index: 9999;
+      padding: 8px 0;
       
       li {
-        display: block;
+        position: relative;
         margin: 0;
         padding: 0;
-        border-bottom: 1px solid rgba(0,0,0,0.1);
-        
-        &:last-child {
-          border-bottom: none;
-        }
         
         a {
-          padding: 0.8rem 1rem;
-          color: $text-color;
+          padding: 10px 20px;
           font-size: 0.9em;
-          font-weight: normal;
-          white-space: nowrap;
+          color: #333;
+          transition: all 0.2s ease;
           
           &:hover {
-            background-color: $primary-color;
-            color: #fff;
+            background-color: #f8f9fa;
+            color: #e67e22;
+            padding-left: 24px;
+          }
+        }
+        
+        &:hover {
+          > .sub-dropdown-menu {
+            display: block;
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        
+        .sub-dropdown-menu {
+          display: none;
+          position: absolute;
+          left: 100%;
+          top: -8px; // 상위 메뉴의 padding과 맞추기
+          min-width: 200px;
+          background-color: #fff;
+          border: 1px solid rgba(0,0,0,0.1);
+          border-radius: 8px;
+          box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+          opacity: 0;
+          transform: translateX(-10px);
+          transition: all 0.3s ease;
+          padding: 8px 0;
+          
+          li {
+            a {
+              padding: 10px 20px;
+              font-size: 0.9em;
+              color: #333;
+              white-space: nowrap;
+              
+              &:hover {
+                background-color: #f8f9fa;
+                color: #e67e22;
+                padding-left: 24px;
+              }
+            }
           }
         }
       }
       
-      // 드롭다운 애니메이션
+      // 구분선 추가
+      li + li {
+        border-top: 1px solid #f1f3f5;
+      }
+      
       animation: dropdown-animation 0.2s ease;
       transform-origin: top center;
     }
   }
 }
 
+// 드롭다운 화살표 추가
+.dropdown > a::after {
+  content: "▾";
+  margin-left: 5px;
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.dropdown:hover > a::after {
+  transform: rotate(180deg);
+}
+
+// 서브메뉴 화살표 추가
+.dropdown-menu li:has(> .sub-dropdown-menu) > a::after {
+  content: "▸";
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 // 드롭다운 애니메이션 정의
 @keyframes dropdown-animation {
   0% {
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(-8px);
   }
   100% {
     opacity: 1;

@@ -11,7 +11,7 @@ classes: wide
 <div style="max-width: 1100px; margin: 0 auto; padding: 20px;">
 
   <!-- 개발자 에티켓 섹션 - 웜톤 배경색 변경 -->
-  <div style="background: linear-gradient(135deg, #fff9f0, #ffefd5); padding: 30px; border-radius: 12px; margin-bottom: 30px; box-shadow: 0 3px 10px rgba(0,0,0,0.08);">
+  <!-- <div style="background: linear-gradient(135deg, #fff9f0, #ffefd5); padding: 30px; border-radius: 12px; margin-bottom: 30px; box-shadow: 0 3px 10px rgba(0,0,0,0.08);">
     <h2 style="margin-top: 0; margin-bottom: 25px; color: #5a3e2f; font-size: 1.8em; border-bottom: 2px solid rgba(230, 126, 34, 0.2); padding-bottom: 10px;"> 개발자의 에티켓 </h2>
     <div style="display: flex; flex-direction: column; gap: 12px;">
       <div style="background: rgba(255, 255, 255, 0.7); padding: 15px; border-radius: 8px; display: flex; align-items: center; backdrop-filter: blur(5px);">
@@ -27,7 +27,7 @@ classes: wide
         <p style="margin: 0; color: #5a3e2f; font-size: 1em;"><strong>3.</strong> 모니터 쳐다보며 웅성웅성 금지</p>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <!-- 최근 포스트 섹션 - 웜톤 배경색 변경 -->
   <div style="background: linear-gradient(135deg, #fff5e6, #ffe8cc); padding: 30px; border-radius: 12px; margin-bottom: 30px; box-shadow: 0 3px 10px rgba(0,0,0,0.08);">
@@ -72,25 +72,16 @@ classes: wide
 
   <!-- 음악 플레이어 섹션 -->
   <div style="background: linear-gradient(135deg, #fff0e6, #ffe0cc); padding: 30px; border-radius: 12px; margin-bottom: 30px; box-shadow: 0 3px 10px rgba(0,0,0,0.08);">
-    <h2 style="margin-top: 0; margin-bottom: 25px; color: #5a3e2f; font-size: 1.8em; border-bottom: 2px solid rgba(230, 126, 34, 0.2); padding-bottom: 10px;">
-      <span style="margin-right: 10px;">🎵</span>
-    </h2>
+
     
     <div style="background: rgba(255, 255, 255, 0.7); padding: 20px; border-radius: 8px; backdrop-filter: blur(5px);">
       <!-- 유튜브 뮤직 플레이어 -->
       <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px;">
-        <iframe 
-          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 8px;"
-          src="https://www.youtube.com/embed/FSa4tVouRIc?si=OXaZAdw2rtqyLjvU&autoplay=1"
-          title="YouTube Music Player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen>
-        </iframe>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/SJ_AqcH1OUQ?si=adfhOCZ_NVkJMAPs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
       
       <div style="margin-top: 15px; text-align: center; color: #5a3e2f; font-size: 0.9em;">
-        <p style="margin: 5px 0;">🎧 집중을 위한 플레이리스트</p>
+        <p style="margin: 5px 0;">🎧 Playlist </p>
       </div>
     </div>
   </div>

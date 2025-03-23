@@ -217,92 +217,104 @@
   }
 
   .visible-links {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: end;
-    -ms-flex-pack: end;
-    justify-content: flex-end;
-    -webkit-box-flex: 1;
-    -ms-flex: 1;
+    position: relative;
     flex: 1;
-    overflow: visible;
+    justify-content: flex-end;
+    padding-right: 2rem;
     
     li {
-      -webkit-box-flex: 0;
-      -ms-flex: none;
-      flex: none;
       position: relative;
       
-      &.dropdown {
+      &.masthead-dropdown {
         &:hover {
-          .dropdown-menu {
+          > .dropdown-menu {
             display: block;
+            opacity: 1;
+            transform: translateY(0);
           }
         }
         
-        .dropdown-menu {
-          display: none;
-          position: absolute;
-          top: 100%;
-          left: 0;
-          min-width: 200px;
-          background: #fff;
-          border: 1px solid $border-color;
-          border-radius: 4px;
-          box-shadow: 0 3px 12px rgba(0,0,0,0.15);
-          z-index: 99999;
-          
-          li {
-            display: block;
-            border-bottom: 1px solid $border-color;
-            
-            &:last-child {
-              border-bottom: none;
-            }
-            
-            a {
-              display: block;
-              padding: 0.7em 1em;
-              font-size: 0.9em;
-              
-              &:before {
-                display: none;
-              }
-              
-              &:hover {
-                background: $primary-color;
-                color: #fff;
-              }
-            }
-          }
+        > a::after {
+          content: "▾";
+          margin-left: 0.5em;
+          display: inline-block;
+          transition: transform 0.2s ease;
+        }
+        
+        &:hover > a::after {
+          transform: rotate(180deg);
         }
       }
     }
 
-    a {
-      position: relative;
-      font-family: $bonmoon;
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      min-width: 200px;
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.1);
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: all 0.2s ease;
+      z-index: 100;
       
-      &:before {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        height: 4px;
-        background: $primary-color;
-        width: 100%;
-        -webkit-transition: $global-transition;
-        transition: $global-transition;
-        -webkit-transform: scaleX(0) translate3d(0, 0, 0);
-        transform: scaleX(0) translate3d(0, 0, 0);
+      li {
+        position: relative;
+        
+        &:hover {
+          > .sub-dropdown-menu {
+            display: block;
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        
+        a {
+          display: block;
+          padding: 0.8em 1.5em;
+          font-size: 0.9em;
+          color: #333;
+          white-space: nowrap;
+          transition: all 0.2s ease;
+          
+          &.has-sub-menu::after {
+            content: "▸";
+            position: absolute;
+            right: 1em;
+            transition: transform 0.2s ease;
+          }
+          
+          &:hover {
+            background: #f8f9fa;
+            color: #e67e22;
+            padding-left: 2em;
+          }
+        }
       }
-
-      &:hover:before {
-        -webkit-transform: scaleX(1);
-        -ms-transform: scaleX(1);
-        transform: scaleX(1);
+      
+      li + li {
+        border-top: 1px solid #f1f3f5;
       }
+    }
+    
+    .sub-dropdown-menu {
+      display: none;
+      position: absolute;
+      left: 100%;
+      top: 0;
+      min-width: 200px;
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.1);
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      opacity: 0;
+      transform: translateX(-10px);
+      transition: all 0.2s ease;
     }
   }
 
@@ -541,7 +553,7 @@
   margin: 0.5rem 0;
   padding: 0.25rem 0;
   font-family: $sans-serif-narrow;
-  font-size: $type-size-5-5;
+  font-size: $type-size-5;
   font-weight: bold;
   text-transform: uppercase;
   border-bottom: 1px solid $border-color;

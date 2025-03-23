@@ -1,19 +1,37 @@
 # main links
 main:
   - title: "카테고리"
-    url: /categories/  
+    url: /categories/
     sublinks:
-      - title: "알고리즘"
-        url: /categories/algorithm
-      - title: "백준"
-        url: /categories/baekjoon
-      - title: "블로그"
-        url: /categories/blog
-      - title: "영상"
-        url: /categories/video
-      - title: "게임제작"
-        url: /categories/game
-      
+      - title: "CS 지식"
+        url: /categories/cs-knowledge/
+        sub_categories:
+          - title: "알고리즘"
+            url: /categories/algorithm
+          - title: "자료구조"
+            url: /categories/datastructure
+      - title: "프로젝트"
+        url: /categories/project-dev/
+        sub_categories:
+          - title: "게임 개발"
+            url: /categories/game
+          - title: "웹 개발"
+            url: /categories/web
+      - title: "문제풀이"
+        url: /categories/problem-solving/
+        sub_categories:
+          - title: "백준"
+            url: /categories/baekjoon
+      - title: "기타"
+        url: /categories/etc/
+        sub_categories:
+          - title: "블로그"
+            url: /categories/blog
+          - title: "영상편집"
+            url: /categories/video
+          - title: "영어단어"
+            url: /categories/english
+
   - title: "태그"
     url: /tags/
 
