@@ -2,7 +2,7 @@
 layout: single
 title:  "[알고리즘 특강] 5. Binary Search"
 categories: algorithm
-tags: [SWEA, C++, Binary Search]
+tags: [SWEA, C++,  이분탐색]
 toc: true
 author_profile: true
 ---
