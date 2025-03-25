@@ -10,6 +10,8 @@ main:
             url: /categories/algorithm
           - title: "자료구조"
             url: /categories/datastructure
+          - title: "운영체제"
+            url: /categories/OS
       - title: "프로젝트"
         url: /categories/project-dev/
         sub_categories:

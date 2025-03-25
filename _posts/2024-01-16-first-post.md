@@ -23,18 +23,77 @@ typora-root-url: ../
 
 블로그 변경사항을 실시간으로 확인하기 위한 로컬 서버 설정 방법입니다.
 
-```bash
-# 1. 레포지토리 디렉토리로 이동
-cd C:\Blog\hoyoung1359.github.io
+### Windows 환경 설정
 
-# 2. 로컬 서버 실행 (실시간 리로드 옵션 포함)
-bundle exec jekyll serve --livereload
+1. **Ruby 설치**
+   - [RubyInstaller](https://rubyinstaller.org/downloads/)에서 `Ruby+Devkit` 버전 다운로드
+   - 설치 시 `Add Ruby executables to your PATH` 옵션 체크
+   - 설치 완료 후 터미널에서 Ruby 버전 확인
+   ```bash
+   ruby -v
+   ```
 
-# 3. 브라우저에서 확인
-http://localhost:4000/ 접속
-```
+2. **Jekyll과 Bundler 설치**
+   ```bash
+   gem install jekyll bundler
+   ```
 
-> 💡 **TIP**: `--livereload` 옵션을 사용하면 파일 변경 시 자동으로 페이지가 새로고침됩니다.
+3. **로컬 서버 실행**
+   ```bash
+   # 1. 레포지토리 디렉토리로 이동
+   cd C:\Blog\username.github.io
+
+   # 2. 의존성 설치 (처음 한 번만)
+   bundle install
+
+   # 3. 로컬 서버 실행 (실시간 리로드 옵션 포함)
+   bundle exec jekyll serve --livereload
+   ```
+
+### Mac 환경 설정
+
+1. **Homebrew 설치**
+   ```bash
+   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+   ```
+   
+2. **Homebrew 환경변수 설정**
+   ```bash
+   echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zshrc
+   source ~/.zshrc
+   ```
+
+3. **Ruby 설치 및 환경변수 설정**
+   ```bash
+   brew install ruby
+   
+   # Intel Mac의 경우
+   echo 'export PATH="/usr/local/opt/ruby/bin:$PATH"' >> ~/.zshrc
+   # M1/M2 Mac의 경우
+   echo 'export PATH="/opt/homebrew/opt/ruby/bin:$PATH"' >> ~/.zshrc
+   
+   source ~/.zshrc
+   ```
+
+4. **Jekyll과 Bundler 설치**
+   ```bash
+   gem install jekyll bundler
+   ```
+
+5. **로컬 서버 실행**
+   ```bash
+   # 1. 레포지토리 디렉토리로 이동
+   cd /path/to/username.github.io
+
+   # 2. 의존성 설치 (처음 한 번만)
+   bundle install
+
+   # 3. 로컬 서버 실행 (실시간 리로드 옵션 포함)
+   bundle exec jekyll serve --livereload
+   ```
+
+### 로컬 서버 접속
+설치가 완료되면 브라우저에서 다음 주소로 접속:
 
 ## 🎨 테마 커스터마이징
 
