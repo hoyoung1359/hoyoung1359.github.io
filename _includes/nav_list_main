@@ -52,7 +52,7 @@
         </ul>
 
         <span class="nav__sub-title">
-          <a href="/categories/project-dev/" style="color: inherit;">프로젝트</a>
+          <a href="/categories/project-dev/" style="color: inherit;">개발</a>
         </span>
         <ul>
             {% for category in site.categories %}

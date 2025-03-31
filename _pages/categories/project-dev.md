@@ -1,5 +1,5 @@
 ---
-title: "프로젝트"
+title: "개발"
 layout: single
 permalink: /categories/project-dev/
 author_profile: true
@@ -15,8 +15,8 @@ sidebar_main: true
 {% endfor %}
 
 <div class="notice">
-  <h4>프로젝트 카테고리 (총 {{ categories_max }}개의 포스트)</h4>
-  <p>개발 프로젝트들을 정리한 카테고리입니다.</p>
+  <h4>개발 카테고리 (총 {{ categories_max }}개의 포스트)</h4>
+  <p>개발 프로젝트 및 필요한 개념들을 정리한 카테고리입니다.</p>
 </div>
 
 <div class="grid__wrapper">

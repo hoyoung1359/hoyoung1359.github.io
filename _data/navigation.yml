@@ -16,7 +16,7 @@ main:
             url: /categories/network
           - title: "데이터베이스"
             url: /categories/DB
-      - title: "프로젝트"
+      - title: "개발"
         url: /categories/project-dev/
         sub_categories:
           - title: "게임 개발"
