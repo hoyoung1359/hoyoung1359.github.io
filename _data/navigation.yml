@@ -16,6 +16,7 @@ main:
             url: /categories/network
           - title: "데이터베이스"
             url: /categories/DB
+      
       - title: "개발"
         url: /categories/project-dev/
         sub_categories:
@@ -23,11 +24,13 @@ main:
             url: /categories/game
           - title: "웹 개발"
             url: /categories/web
+      
       - title: "문제풀이"
         url: /categories/problem-solving/
         sub_categories:
           - title: "백준"
             url: /categories/baekjoon
+      
       - title: "기타"
         url: /categories/etc/
         sub_categories:
@@ -37,6 +40,8 @@ main:
             url: /categories/video
           - title: "영어단어"
             url: /categories/english
+          - title: "Mac"
+            url: /categories/mac
 
   - title: "태그"
     url: /tags/
