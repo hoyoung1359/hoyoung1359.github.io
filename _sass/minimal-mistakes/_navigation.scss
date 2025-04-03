@@ -225,7 +225,8 @@
     
     li {
       position: relative;
-      
+      font-size: 1.5rem;
+      font-family: $dongle;              // 탑 네비 글씨 
       &.masthead-dropdown {
         &:hover {
           > .dropdown-menu {
@@ -254,7 +255,8 @@
       top: 100%;
       left: 0;
       min-width: 200px;
-      background: #fff;
+      background: rgba(255, 255, 255, 0.7);
+      //background-color: rgba(255, 255, 255, 0.7); /* 흰색 배경에 50% 투명도 */
       border: 1px solid rgba(0,0,0,0.1);
       border-radius: 8px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.12);
@@ -265,9 +267,11 @@
       
       li {
         position: relative;
-        
+        font-size: 1.1rem;
+        font-family: $sans-serif;              // 드롭다운 글씨
         &:hover {
           > .sub-dropdown-menu {
+            background: rgba(255, 255, 255, 0.7);        // 서브 드롭다운 배경
             display: block;
             opacity: 1;
             transform: translateX(0);
@@ -307,7 +311,7 @@
       position: absolute;
       left: 100%;
       top: 0;
-      min-width: 200px;
+      min-width: 150px;
       background: #fff;
       border: 1px solid rgba(0,0,0,0.1);
       border-radius: 8px;
@@ -501,8 +505,14 @@
   font-size: 1.25rem;
 
   a {
-    font-family: $sans-serif;
+    font-family: $sans-serif;      // 카테고리 항목 글씨체 변경
     color: inherit;
+  }
+
+  /* 카테고리 항목 글씨체 변경 - sub-title 아래 요소들만 */
+  li > ul > li > a {
+    font-family: "Dongle";
+    font-size: 1.3rem;
   }
 
   .active {
@@ -557,7 +567,10 @@
   font-weight: bold;
   text-transform: uppercase;
   border-bottom: 1px solid $border-color;
+  color: #cf7628;             // sub-title 색 변경
 }
+
+
 
 /*
      Table of contents navigation
