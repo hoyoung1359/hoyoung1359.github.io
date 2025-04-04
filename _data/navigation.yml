@@ -37,7 +37,7 @@ main:
           - title: "블로그"
             url: /categories/blog
           - title: "영상편집"
-            url: /categories/video
+            url: /categories/video-editing
           - title: "영어단어"
             url: /categories/english
           - title: "Mac"
