@@ -20,7 +20,7 @@ title                    : "인코딩중"
 title_separator          : "|"
 subtitle                 : Computer Science
 name                     : "Baymax"
-description              : "아놀자"
+description              : "InCoding"
 url                      : "https://hoyoung1359.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
