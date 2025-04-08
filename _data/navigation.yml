@@ -30,6 +30,8 @@ main:
         sub_categories:
           - title: "백준"
             url: /categories/baekjoon
+          - title: "LeetCode"
+            url: /categories/leetcode
       
       - title: "기타"
         url: /categories/etc/

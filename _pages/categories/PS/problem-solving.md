@@ -34,4 +34,21 @@ sidebar_main: true
       </div>
     </div>
   </div>
+
+  <div class="grid__item" style="padding: 2em; text-align: center; border: 1px solid #f2f3f3; border-radius: 4px; margin-bottom: 1em; background: white;">
+    <div style="font-size: 2em; margin-bottom: 0.5em;">⚡</div>
+    <div class="archive__item">
+      <h2 class="archive__item-title no_toc" itemprop="headline" style="margin: 0 0 10px 0; padding-bottom: 0.3em;">
+        <a href="/categories/leetcode" rel="permalink">리트코드</a>
+      </h2>
+      <div class="archive__item-excerpt" style="margin-top: 0.5em; font-size: 0.9em; line-height: 1.5;">
+        <p style="margin: 0;">리트코드 문제 풀이</p>
+        {% assign leetcode_posts = site.categories.leetcode %}
+        <p style="margin: 0.5em 0 0 0; color: #666;">{{ leetcode_posts.size }}개의 포스트</p>
+      </div>
+    </div>
+  </div>
+
+
+
 </div> 
