@@ -8,15 +8,15 @@ sidebar_main: true
 
 {% assign categories_max = 0 %}
 {% for category in site.categories %}
-  {% if category[0] == "algorithm" or category[0] == "datastructure" %}
+  {% if category[0] == "algorithm" or category[0] == "network" or category[0] == "DB" or category[0] == "OS" %}
     {% assign category_count = category[1].size %}
     {% assign categories_max = categories_max | plus: category_count %}
   {% endif %}
 {% endfor %}
 
 <div class="notice">
-  <h4>CS 지식 카테고리 (총 {{ categories_max }}개의 포스트)</h4>
-  <p>컴퓨터 과학 관련 지식들을 정리한 카테고리입니다.</p>
+  <h4 style="font-size: 1.5em;">CS 지식 카테고리 (총 {{ categories_max }}개의 포스트)</h4>
+  <p style="font-size: 1.1em;">컴퓨터 과학 관련 지식들을 정리한 카테고리입니다.</p>
 </div>
 
 <div class="grid__wrapper">
@@ -28,7 +28,7 @@ sidebar_main: true
         <a href="/categories/algorithm" rel="permalink">알고리즘</a>
       </h2>
       <div class="archive__item-excerpt" style="margin-top: 0.5em; font-size: 0.9em; line-height: 1.5;">
-        <p style="margin: 0;">알고리즘 이론 및 문제 풀이</p>
+        <p style="margin: 0;">알고리즘 이론 및 문제</p>
         {% assign algorithm_posts = site.categories.algorithm %}
         <p style="margin: 0.5em 0 0 0; color: #666;">{{ algorithm_posts.size }}개의 포스트</p>
       </div>

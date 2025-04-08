@@ -33,7 +33,7 @@ classes: wide
   <div style="padding: 30px; border-radius: 12px; margin-bottom: 30px;">
     <h2 style="margin-top: 0; margin-bottom: 25px; color: #5a3e2f; font-size: 1.8em; border-bottom: 2px solid rgba(230, 126, 34, 0.2); padding-bottom: 10px;">최근 포스트</h2>
     {% for post in site.posts limit:3 %}
-            <div style="margin-bottom: 20px; padding: 15px; background: rgba(240, 235, 221, 0.7); border-radius: 8px; backdrop-filter: blur(5px);">
+            <div style="margin-bottom: 20px; padding: 15px; background: rgba(255, 255, 255, 1); border-radius: 8px; backdrop-filter: blur(5px);">
 
         <h3 style="margin: 0; font-size: 1.3em;"><a href="{{ post.url }}" style="text-decoration: none; color: #d35400;">{{ post.title }}</a></h3>
         <p style="margin: 5px 0; color: #7f6a56; font-size: 0.9em;">{{ post.date | date: "%Y-%m-%d" }}</p>
@@ -72,17 +72,26 @@ classes: wide
   </div> -->
 
   <!-- 음악 플레이어 섹션 - 배경 디자인 제거 -->
-    <!-- 음악 플레이어 섹션 -->
   <div style="padding: 30px; border-radius: 12px; margin-bottom: 30px;">
-    <div style="background: rgba(240, 235, 221, 0.7); padding: 20px; border-radius: 8px; backdrop-filter: blur(5px);">
-
-      <div style="margin-top: 15px; text-align: center; color: #5a3e2f; font-size: 1.2em;">
-        <p style="margin: 5px 0;">🎧 Playlist </p>
+    <div style="background: rgba(255, 255, 255, 0.7); padding: 20px; border-radius: 8px; backdrop-filter: blur(5px);">
+      <div style="margin-bottom: 15px; text-align: center; color: #5a3e2f;">
+        <h3 style="margin: 5px 0; font-size: 1.4em;">🎧 Now Playing</h3>
       </div>
 
-      <!-- 유튜브 뮤직 플레이어 -->
-      <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px;">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/SJ_AqcH1OUQ?si=adfhOCZ_NVkJMAPs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      <!-- 유튜브 뮤직 플레이어 - 컴팩트 버전 -->
+      <div style="max-width: 600px; margin: 0 auto;">
+        <div style="position: relative; padding-bottom: 55%; height: 0; overflow: hidden; border-radius: 12px; box-shadow: 0 5px 8px rgba(0, 0, 0, 0.3);">
+          <iframe 
+            width="560" 
+            height="315" 
+            src="https://www.youtube.com/embed/SJ_AqcH1OUQ?si=adfhOCZ_NVkJMAPs&controls=1&modestbranding=1&rel=0" 
+            title="YouTube Music Player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 12px;"
+            allowfullscreen>
+          </iframe>
+        </div>
       </div>
     </div>
   </div>

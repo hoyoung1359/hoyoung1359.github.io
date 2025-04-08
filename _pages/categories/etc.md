@@ -15,8 +15,8 @@ sidebar_main: true
 {% endfor %}
 
 <div class="notice">
-  <h4>기타 카테고리 (총 {{ categories_max }}개의 포스트)</h4>
-  <p>기타 다양한 주제의 포스트들을 모아놓은 카테고리입니다.</p>
+  <h4 style="font-size: 1.5em;">기타 카테고리 (총 {{ categories_max }}개의 포스트)</h4>
+  <p style="font-size: 1.1em;">기타 다양한 주제의 포스트들을 모아놓은 카테고리입니다.</p>
 </div>
 
 <div class="grid__wrapper">
@@ -67,13 +67,15 @@ sidebar_main: true
 
   <!-- Mac 카테고리 -->
   <div class="grid__item" style="padding: 2em; text-align: center; border: 1px solid #f2f3f3; border-radius: 4px; margin-bottom: 1em; background: white;">
-    <div style="font-size: 2em; margin-bottom: 0.5em;">🍎</div>
+    <div style="margin-bottom: 0.5em;">
+      <img src="/../../assets/images/apple.png" alt="LeetCode" style="width: 80px; height: auto;">
+    </div>
     <div class="archive__item">
       <h2 class="archive__item-title no_toc" itemprop="headline" style="margin: 0 0 10px 0; padding-bottom: 0.3em;">
         <a href="/categories/mac" rel="permalink">Mac</a>
       </h2>
       <div class="archive__item-excerpt" style="margin-top: 0.5em; font-size: 0.9em; line-height: 1.5;">
-        <p style="margin: 0;">Mac 단축키 및 꿀팁 모음</p>
+        <p style="margin: 0;">Mac 단축키 및 꿀팁</p>
         {% assign mac_posts = site.categories.mac %}
         <p style="margin: 0.5em 0 0 0; color: #666;">{{ mac_posts.size }}개의 포스트</p>
       </div>
