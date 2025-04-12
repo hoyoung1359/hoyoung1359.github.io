@@ -1,0 +1,481 @@
+<div class="post-content">
+    <div class="post-header">
+    <h1 class="post-title">[백준] 1874번 스택 수열 (C++)</h1>
+    <div class="post-meta"><span class="post-date">2025년 3월 5일</span> <span class="post-category">카테고리: <a href="#">알고리즘</a></span> <span class="post-tags">태그: <a href="#">백준</a>, <a href="#">자료구조</a>, <a href="#">스택</a></span></div>
+    <p data-ke-size="size16">&nbsp;</p>
+    </div>
+    <!-- 목차 -->
+    <div class="toc">
+    <h2 data-ke-size="size26">목차</h2>
+    <ul style="list-style-type: disc;" data-ke-list-type="disc">
+    <li><a href="#problem">문제</a></li>
+    <li><a href="#input">입력</a></li>
+    <li><a href="#output">출력</a></li>
+    <li><a href="#solution">풀이</a>
+    <ul style="list-style-type: disc;" data-ke-list-type="disc">
+    <li><a href="#approach">문제 해결 방법</a></li>
+    <li><a href="#code">코드</a></li>
+    </ul>
+    </li>
+    </ul>
+    </div>
+    <!-- 본문 시작 -->
+    <div class="post-body">
+    <h2 id="problem" data-ke-size="size26">문제 <a class="problem-link-inline" href="https://www.acmicpc.net/problem/1874" target="_blank" rel="noopener">문제 링크</a></h2>
+    <div class="problem-statement">
+    <p data-ke-size="size16">스택 (stack)은 기본적인 자료구조 중 하나로, 컴퓨터 프로그램을 작성할 때 자주 이용되는 개념이다. 스택은 자료를 넣는 (push) 입구와 자료를 뽑는 (pop) 입구가 같아 제일 나중에 들어간 자료가 제일 먼저 나오는 (LIFO, Last in First out) 특성을 가지고 있다.</p>
+    <p data-ke-size="size16">1부터 n까지의 수를 스택에 넣었다가 뽑아 늘어놓음으로써, 하나의 수열을 만들 수 있다. 이때, 스택에 push하는 순서는 반드시 오름차순을 지키도록 한다고 하자. 임의의 수열이 주어졌을 때 스택을 이용해 그 수열을 만들 수 있는지 없는지, 있다면 어떤 순서로 push와 pop 연산을 수행해야 하는지를 알아낼 수 있다. 이를 계산하는 프로그램을 작성하라.</p>
+    </div>
+    <h2 id="input" data-ke-size="size26">입력</h2>
+    <div class="input-format">
+    <p data-ke-size="size16">첫째 줄에 n (1 ≤ n ≤ 100,000)이 주어진다. 둘째 줄부터 n개의 줄에 걸쳐 수열을 이루는 1이상 n이하의 정수가 하나씩 순서대로 주어진다. 물론 같은 정수가 두 번 나오는 일은 없다.</p>
+    </div>
+    <div class="example">
+    <h3 data-ke-size="size23">예제 입력 1</h3>
+    <div class="code-block">
+    <pre class="bash" data-ke-language="bash"><code>8
+4
+3
+6
+8
+7
+5
+2
+1</code></pre>
+    </div>
+    </div>
+    <h2 id="output" data-ke-size="size26">출력</h2>
+    <div class="output-format">
+    <p data-ke-size="size16">입력된 수열을 만들기 위해 필요한 연산을 한 줄에 한 개씩 출력한다. push연산은 +로, pop 연산은 -로 표현하도록 한다. 불가능한 경우 NO를 출력한다.</p>
+    </div>
+    <div class="example">
+    <h3 data-ke-size="size23">예제 출력 1</h3>
+    <div class="code-block">
+    <pre class="bash" data-ke-language="bash"><code>+
++
++
++
+-
+-
++
++
+-
++
++
+-
+-
+-
+-
+-</code></pre>
+    </div>
+    </div>
+    <h2 id="solution" data-ke-size="size26">풀이</h2>
+    <h3 id="approach" data-ke-size="size23">문제 해결 방법</h3>
+    <div class="solution-approach">
+    <p data-ke-size="size16">이 문제는 스택을 사용하여 주어진 수열을 만들 수 있는지 확인하고, 가능하다면 push와 pop 연산의 순서를 출력하는 문제입니다. 다음과 같은 방법으로 구현합니다:</p>
+    <ol style="list-style-type: decimal;" data-ke-list-type="decimal">
+    <li>현재 스택에 넣을 수 있는 숫자를 추적하는 변수(current)를 사용합니다.</li>
+    <li>수열의 각 숫자에 대해:
+        <ul>
+        <li>현재 숫자가 current보다 크면, current부터 해당 숫자까지 push합니다.</li>
+        <li>스택의 top이 현재 숫자와 같으면 pop합니다.</li>
+        <li>스택의 top이 현재 숫자와 다르면 수열을 만들 수 없습니다.</li>
+        </ul>
+    </li>
+    </ol>
+    <div class="complexity">
+    <p data-ke-size="size16">시간 복잡도는 <b>O(N)</b>입니다.</p>
+    </div>
+    </div>
+    <h3 id="code" data-ke-size="size23">코드</h3>
+    <div class="code-block">
+    <pre class="cpp"><code>#include <iostream>
+#include <stack>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    
+    vector<int> target(n);
+    for (int i = 0; i < n; i++) {
+        cin >> target[i];
+    }
+    
+    stack<int> s;
+    vector<string> result;
+    int current = 1;
+    
+    for (int i = 0; i < n; i++) {
+        while (current <= target[i]) {
+            s.push(current);
+            result.push_back("+");
+            current++;
+        }
+        
+        if (s.top() == target[i]) {
+            s.pop();
+            result.push_back("-");
+        } else {
+            cout << "NO" << endl;
+            return 0;
+        }
+    }
+    
+    for (const string& op : result) {
+        cout << op << "\n";
+    }
+    
+    return 0;
+}</code></pre>
+    </div>
+    </div>
+    <div class="post-footer">
+    <div class="post-navigation">
+    <div class="prev-post"><a href="#">이전 글: [백준] 1406번 에디터</a></div>
+    <div class="next-post"><a href="#">다음 글: [백준] 1927번 최소 힙</a></div>
+    </div>
+    </div>
+    </div>
+    <div>
+    <style>
+    /* 티스토리 스타일링 */
+    .post-content {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        line-height: 1.6;
+        font-family: 'Noto Sans KR', sans-serif;
+        color: #333;
+    }
+    
+    .post-header {
+        margin-bottom: 30px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 20px;
+    }
+    
+    .post-title {
+        font-size: 2.2em;
+        color: #222;
+        margin-bottom: 15px;
+        line-height: 1.3;
+    }
+    
+    .post-meta {
+        color: #666;
+        font-size: 0.9em;
+        margin-bottom: 15px;
+    }
+    
+    .post-meta span {
+        margin-right: 15px;
+    }
+    
+    .post-meta a {
+        color: #007bff;
+        text-decoration: none;
+    }
+    
+    .post-meta a:hover {
+        text-decoration: underline;
+    }
+    
+    .post-summary {
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-left: 4px solid #007bff;
+        margin-bottom: 30px;
+        font-style: italic;
+    }
+    
+    .toc {
+        background: #ffffff;
+        padding: 25px;
+        border-radius: 8px;
+        margin-bottom: 30px;
+        border: 1px solid #e9ecef;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .toc::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 5px;
+        height: 100%;
+        background: linear-gradient(to bottom, #007bff, #00c6ff);
+    }
+    
+    .toc h2 {
+        margin-top: 0;
+        font-size: 1.5em;
+        color: #333;
+        border-bottom: none;
+        padding-bottom: 0;
+        margin-bottom: 15px;
+        position: relative;
+        display: inline-block;
+    }
+    
+    .toc h2::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(to right, #007bff, transparent);
+    }
+    .toc ul[style*="list-style-type: disc"] {
+        list-style-type: none !important;
+    }
+    .toc ul {
+        list-style-type: none !important;
+        padding-left: 0;
+        margin: 0;
+    }
+      
+     .toc li {
+        list-style-type: none !important; /* li에도 직접 적용 */
+        padding-left: 0;
+        position: relative;
+    }
+    
+    .toc > ul > li {
+        margin-bottom: 10px;
+        position: relative;
+    }
+    
+    .toc > ul > li:last-child {
+        margin-bottom: 0;
+    }
+    
+    .toc a {
+        color: #333;
+        text-decoration: none;
+        display: block;
+        padding: 8px 12px;
+        border-radius: 4px;
+        transition: all 0.2s ease;
+        position: relative;
+        padding-left: 25px;
+    }
+    
+    .toc a::before {
+        content: "•";
+        position: absolute;
+        left: 8px;
+        color: #007bff;
+        font-weight: bold;
+    }
+    
+    .toc a:hover {
+        color: #007bff;
+        background-color: #f8f9fa;
+        transform: translateX(5px);
+    }
+    
+    .toc ul ul {
+        margin-top: 5px;
+        margin-left: 15px;
+        border-left: 2px dashed #e9ecef;
+        padding-left: 10px;
+    }
+    
+    .toc ul ul a {
+        font-size: 0.95em;
+        padding: 6px 12px 6px 25px;
+    }
+    
+    .toc ul ul a::before {
+        content: "◦";
+        color: #6c757d;
+    }
+    
+    .post-body {
+        margin-bottom: 40px;
+    }
+    
+    h2 {
+        color: #333;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 10px;
+        margin-top: 40px;
+        font-size: 1.8em;
+    }
+    
+    h3 {
+        color: #444;
+        margin-top: 30px;
+        font-size: 1.4em;
+    }
+    
+    .problem-statement, .input-format, .output-format {
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        border-left: 4px solid #28a745;
+    }
+    
+    .problem-link {
+        display: none;
+    }
+    
+    .problem-link-inline {
+        display: inline-block;
+        background-color: #007bff;
+        color: white important;
+        padding: 3px 8px;
+        border-radius: 3px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 0.6em;
+        vertical-align: middle;
+        margin-left: 10px;
+        transition: background-color 0.2s;
+    }
+    
+    .problem-link-inline:hover {
+        background-color: #0069d9;
+        text-decoration: none;
+        color: white;
+    }
+    
+    .example {
+        margin-bottom: 30px;
+    }
+    
+    .example h3 {
+        color: #007bff;
+        margin-bottom: 10px;
+    }
+    
+    .code-block {
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-radius: 5px;
+        overflow-x: auto;
+        border: 1px solid #e9ecef;
+        margin-bottom: 20px;
+    }
+    
+    .code-block pre {
+        margin: 0;
+        padding: 0;
+        background: none;
+        border: none;
+    }
+    
+    .code-block code {
+        font-family: 'Consolas', 'Monaco', monospace;
+        font-size: 0.9em;
+        color: #333;
+    }
+    
+    .solution-approach {
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        border-left: 4px solid #ffc107;
+    }
+    
+    .solution-approach ol, .solution-approach ul {
+        padding-left: 25px;
+    }
+    
+    .solution-approach li {
+        margin: 10px 0;
+    }
+    
+    .complexity {
+        background-color: #e9ecef;
+        padding: 10px;
+        border-radius: 5px;
+        margin-top: 15px;
+        font-weight: bold;
+    }
+    
+    .post-footer {
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid #eee;
+    }
+    
+    .post-navigation {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+    
+    .prev-post, .next-post {
+        max-width: 45%;
+    }
+    
+    .prev-post a, .next-post a {
+        color: #007bff;
+        text-decoration: none;
+    }
+    
+    .prev-post a:hover, .next-post a:hover {
+        text-decoration: underline;
+    }
+    
+    .post-share {
+        text-align: center;
+        margin-top: 20px;
+    }
+    
+    .share-link {
+        display: inline-block;
+        margin: 0 10px;
+        color: #007bff;
+        text-decoration: none;
+    }
+    
+    .share-link:hover {
+        text-decoration: underline;
+    }
+    
+    /* 반응형 디자인 */
+    @media (max-width: 768px) {
+        .post-content {
+            padding: 15px;
+        }
+        
+        .post-title {
+            font-size: 1.8em;
+        }
+        
+        .post-navigation {
+            flex-direction: column;
+        }
+        
+        .prev-post, .next-post {
+            max-width: 100%;
+            margin-bottom: 10px;
+        }
+        
+        .toc {
+            padding: 15px;
+        }
+        
+        .toc a {
+            padding: 6px 10px 6px 25px;
+        }
+    }
+    
+    .toc ul[style*="list-style-type: disc"] {
+        list-style-type: none !important;
+    }
+    </style>
+    </div>
+</div> 

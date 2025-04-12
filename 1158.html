@@ -1,0 +1,454 @@
+<div class="post-content">
+    <div class="post-header">
+    <h1 class="post-title">[백준] 1158번 요세푸스 문제 (C++)</h1>
+    <div class="post-meta"><span class="post-date">2025년 3월 3일</span> <span class="post-category">카테고리: <a href="#">알고리즘</a></span> <span class="post-tags">태그: <a href="#">백준</a>, <a href="#">자료구조</a>, <a href="#">큐</a></span></div>
+    <p data-ke-size="size16">&nbsp;</p>
+    </div>
+    <!-- 목차 -->
+    <div class="toc">
+    <h2 data-ke-size="size26">목차</h2>
+    <ul style="list-style-type: disc;" data-ke-list-type="disc">
+    <li><a href="#problem">문제</a></li>
+    <li><a href="#input">입력</a></li>
+    <li><a href="#output">출력</a></li>
+    <li><a href="#solution">풀이</a>
+    <ul style="list-style-type: disc;" data-ke-list-type="disc">
+    <li><a href="#approach">문제 해결 방법</a></li>
+    <li><a href="#code">코드</a></li>
+    </ul>
+    </li>
+    </ul>
+    </div>
+    <!-- 본문 시작 -->
+    <div class="post-body">
+    <h2 id="problem" data-ke-size="size26">문제 <a class="problem-link-inline" href="https://www.acmicpc.net/problem/1158" target="_blank" rel="noopener">문제 링크</a></h2>
+    <div class="problem-statement">
+    <p data-ke-size="size16">요세푸스 문제는 다음과 같다.</p>
+    <p data-ke-size="size16">1번부터 N번까지 N명의 사람이 원을 이루면서 앉아있고, 양의 정수 K(≤ N)가 주어진다. 이제 순서대로 K번째 사람을 제거한다. 한 사람이 제거되면 남은 사람들로 이루어진 원을 따라 이 과정을 계속해 나간다. 이 과정은 N명의 사람이 모두 제거될 때까지 계속된다. 원에서 사람들이 제거되는 순서를 (N, K)-요세푸스 순열이라고 한다. 예를 들어 (7, 3)-요세푸스 순열은 <3, 6, 2, 7, 5, 1, 4>이다.</p>
+    <p data-ke-size="size16">N과 K가 주어지면 (N, K)-요세푸스 순열을 구하는 프로그램을 작성하시오.</p>
+    </div>
+    <h2 id="input" data-ke-size="size26">입력</h2>
+    <div class="input-format">
+    <p data-ke-size="size16">첫째 줄에 N과 K가 빈 칸을 사이에 두고 순서대로 주어진다. (1 ≤ K ≤ N ≤ 5,000)</p>
+    </div>
+    <div class="example">
+    <h3 data-ke-size="size23">예제 입력 1</h3>
+    <div class="code-block">
+    <pre class="bash" data-ke-language="bash"><code>7 3</code></pre>
+    </div>
+    </div>
+    <h2 id="output" data-ke-size="size26">출력</h2>
+    <div class="output-format">
+    <p data-ke-size="size16">예제와 같이 요세푸스 순열을 출력한다.</p>
+    </div>
+    <div class="example">
+    <h3 data-ke-size="size23">예제 출력 1</h3>
+    <div class="code-block">
+    <pre class="bash" data-ke-language="bash"><code><3, 6, 2, 7, 5, 1, 4></code></pre>
+    </div>
+    </div>
+    <h2 id="solution" data-ke-size="size26">풀이</h2>
+    <h3 id="approach" data-ke-size="size23">문제 해결 방법</h3>
+    <div class="solution-approach">
+    <p data-ke-size="size16">이 문제는 큐를 사용하여 해결할 수 있습니다. 다음과 같은 방법으로 구현합니다:</p>
+    <ol style="list-style-type: decimal;" data-ke-list-type="decimal">
+    <li>1부터 N까지의 숫자를 큐에 넣습니다.</li>
+    <li>K-1번째까지의 숫자를 큐에서 빼서 다시 큐에 넣습니다.</li>
+    <li>K번째 숫자를 큐에서 빼서 결과 배열에 저장합니다.</li>
+    <li>큐가 빌 때까지 2-3단계를 반복합니다.</li>
+    </ol>
+    <div class="complexity">
+    <p data-ke-size="size16">시간 복잡도는 <b>O(NK)</b>입니다.</p>
+    </div>
+    </div>
+    <h3 id="code" data-ke-size="size23">코드</h3>
+    <div class="code-block">
+    <pre class="cpp"><code>#include <iostream>
+#include <queue>
+#include <vector>
+
+using namespace std;
+
+int main() {
+    int N, K;
+    cin >> N >> K;
+    
+    queue<int> q;
+    vector<int> result;
+    
+    // 1부터 N까지의 숫자를 큐에 넣기
+    for (int i = 1; i <= N; i++) {
+        q.push(i);
+    }
+    
+    while (!q.empty()) {
+        // K-1번째까지의 숫자를 큐에서 빼서 다시 넣기
+        for (int i = 0; i < K - 1; i++) {
+            q.push(q.front());
+            q.pop();
+        }
+        // K번째 숫자를 결과 배열에 저장
+        result.push_back(q.front());
+        q.pop();
+    }
+    
+    // 결과 출력
+    cout << "<";
+    for (int i = 0; i < result.size(); i++) {
+        cout << result[i];
+        if (i != result.size() - 1) {
+            cout << ", ";
+        }
+    }
+    cout << ">";
+    
+    return 0;
+}</code></pre>
+    </div>
+    </div>
+    <div class="post-footer">
+    <div class="post-navigation">
+    <div class="prev-post"><a href="#">이전 글: [백준] 10866번 덱</a></div>
+    <div class="next-post"><a href="#">다음 글: [백준] 1406번 에디터</a></div>
+    </div>
+    </div>
+    </div>
+    <div>
+    <style>
+    /* 티스토리 스타일링 */
+    .post-content {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        line-height: 1.6;
+        font-family: 'Noto Sans KR', sans-serif;
+        color: #333;
+    }
+    
+    .post-header {
+        margin-bottom: 30px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 20px;
+    }
+    
+    .post-title {
+        font-size: 2.2em;
+        color: #222;
+        margin-bottom: 15px;
+        line-height: 1.3;
+    }
+    
+    .post-meta {
+        color: #666;
+        font-size: 0.9em;
+        margin-bottom: 15px;
+    }
+    
+    .post-meta span {
+        margin-right: 15px;
+    }
+    
+    .post-meta a {
+        color: #007bff;
+        text-decoration: none;
+    }
+    
+    .post-meta a:hover {
+        text-decoration: underline;
+    }
+    
+    .post-summary {
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-left: 4px solid #007bff;
+        margin-bottom: 30px;
+        font-style: italic;
+    }
+    
+    .toc {
+        background: #ffffff;
+        padding: 25px;
+        border-radius: 8px;
+        margin-bottom: 30px;
+        border: 1px solid #e9ecef;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .toc::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 5px;
+        height: 100%;
+        background: linear-gradient(to bottom, #007bff, #00c6ff);
+    }
+    
+    .toc h2 {
+        margin-top: 0;
+        font-size: 1.5em;
+        color: #333;
+        border-bottom: none;
+        padding-bottom: 0;
+        margin-bottom: 15px;
+        position: relative;
+        display: inline-block;
+    }
+    
+    .toc h2::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(to right, #007bff, transparent);
+    }
+    .toc ul[style*="list-style-type: disc"] {
+        list-style-type: none !important;
+    }
+    .toc ul {
+        list-style-type: none !important;
+        padding-left: 0;
+        margin: 0;
+    }
+      
+     .toc li {
+        list-style-type: none !important; /* li에도 직접 적용 */
+        padding-left: 0;
+        position: relative;
+    }
+    
+    .toc > ul > li {
+        margin-bottom: 10px;
+        position: relative;
+    }
+    
+    .toc > ul > li:last-child {
+        margin-bottom: 0;
+    }
+    
+    .toc a {
+        color: #333;
+        text-decoration: none;
+        display: block;
+        padding: 8px 12px;
+        border-radius: 4px;
+        transition: all 0.2s ease;
+        position: relative;
+        padding-left: 25px;
+    }
+    
+    .toc a::before {
+        content: "•";
+        position: absolute;
+        left: 8px;
+        color: #007bff;
+        font-weight: bold;
+    }
+    
+    .toc a:hover {
+        color: #007bff;
+        background-color: #f8f9fa;
+        transform: translateX(5px);
+    }
+    
+    .toc ul ul {
+        margin-top: 5px;
+        margin-left: 15px;
+        border-left: 2px dashed #e9ecef;
+        padding-left: 10px;
+    }
+    
+    .toc ul ul a {
+        font-size: 0.95em;
+        padding: 6px 12px 6px 25px;
+    }
+    
+    .toc ul ul a::before {
+        content: "◦";
+        color: #6c757d;
+    }
+    
+    .post-body {
+        margin-bottom: 40px;
+    }
+    
+    h2 {
+        color: #333;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 10px;
+        margin-top: 40px;
+        font-size: 1.8em;
+    }
+    
+    h3 {
+        color: #444;
+        margin-top: 30px;
+        font-size: 1.4em;
+    }
+    
+    .problem-statement, .input-format, .output-format {
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        border-left: 4px solid #28a745;
+    }
+    
+    .problem-link {
+        display: none;
+    }
+    
+    .problem-link-inline {
+        display: inline-block;
+        background-color: #007bff;
+        color: white important;
+        padding: 3px 8px;
+        border-radius: 3px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 0.6em;
+        vertical-align: middle;
+        margin-left: 10px;
+        transition: background-color 0.2s;
+    }
+    
+    .problem-link-inline:hover {
+        background-color: #0069d9;
+        text-decoration: none;
+        color: white;
+    }
+    
+    .example {
+        margin-bottom: 30px;
+    }
+    
+    .example h3 {
+        color: #007bff;
+        margin-bottom: 10px;
+    }
+    
+    .code-block {
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-radius: 5px;
+        overflow-x: auto;
+        border: 1px solid #e9ecef;
+        margin-bottom: 20px;
+    }
+    
+    .code-block pre {
+        margin: 0;
+        padding: 0;
+        background: none;
+        border: none;
+    }
+    
+    .code-block code {
+        font-family: 'Consolas', 'Monaco', monospace;
+        font-size: 0.9em;
+        color: #333;
+    }
+    
+    .solution-approach {
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        border-left: 4px solid #ffc107;
+    }
+    
+    .solution-approach ol, .solution-approach ul {
+        padding-left: 25px;
+    }
+    
+    .solution-approach li {
+        margin: 10px 0;
+    }
+    
+    .complexity {
+        background-color: #e9ecef;
+        padding: 10px;
+        border-radius: 5px;
+        margin-top: 15px;
+        font-weight: bold;
+    }
+    
+    .post-footer {
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid #eee;
+    }
+    
+    .post-navigation {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+    
+    .prev-post, .next-post {
+        max-width: 45%;
+    }
+    
+    .prev-post a, .next-post a {
+        color: #007bff;
+        text-decoration: none;
+    }
+    
+    .prev-post a:hover, .next-post a:hover {
+        text-decoration: underline;
+    }
+    
+    .post-share {
+        text-align: center;
+        margin-top: 20px;
+    }
+    
+    .share-link {
+        display: inline-block;
+        margin: 0 10px;
+        color: #007bff;
+        text-decoration: none;
+    }
+    
+    .share-link:hover {
+        text-decoration: underline;
+    }
+    
+    /* 반응형 디자인 */
+    @media (max-width: 768px) {
+        .post-content {
+            padding: 15px;
+        }
+        
+        .post-title {
+            font-size: 1.8em;
+        }
+        
+        .post-navigation {
+            flex-direction: column;
+        }
+        
+        .prev-post, .next-post {
+            max-width: 100%;
+            margin-bottom: 10px;
+        }
+        
+        .toc {
+            padding: 15px;
+        }
+        
+        .toc a {
+            padding: 6px 10px 6px 25px;
+        }
+    }
+    
+    .toc ul[style*="list-style-type: disc"] {
+        list-style-type: none !important;
+    }
+    </style>
+    </div>
+</div> 
