@@ -8,7 +8,7 @@ sidebar_main: true
 
 {% assign categories_max = 0 %}
 {% for category in site.categories %}
-  {% if category[0] == "blog" or category[0] == "video-editing" or category[0] == "english" or category[0] == "mac" %}
+  {% if category[0] == "blog" or category[0] == "video" or category[0] == "english" or category[0] == "mac" %}
     {% assign category_count = category[1].size %}
     {% assign categories_max = categories_max | plus: category_count %}
   {% endif %}
@@ -40,11 +40,11 @@ sidebar_main: true
     <div style="font-size: 2em; margin-bottom: 0.5em;">🎬</div>
     <div class="archive__item">
       <h2 class="archive__item-title no_toc" itemprop="headline" style="margin: 0 0 10px 0; padding-bottom: 0.3em;">
-        <a href="/categories/video-editing" rel="permalink">영상편집</a>
+        <a href="/categories/video" rel="permalink">영상편집</a>
       </h2>
       <div class="archive__item-excerpt" style="margin-top: 0.5em; font-size: 0.9em; line-height: 1.5;">
         <p style="margin: 0;">영상편집 관련 포스트</p>
-        {% assign video_posts = site.categories.video-editing %}
+        {% assign video_posts = site.categories.video %}
         <p style="margin: 0.5em 0 0 0; color: #666;">{{ video_posts.size }}개의 포스트</p>
       </div>
     </div>

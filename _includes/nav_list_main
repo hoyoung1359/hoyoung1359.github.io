@@ -83,7 +83,7 @@
                 {% endif %}
             {% endfor %}
         </ul>
-        
+
         <span class="nav__sub-title">
           <a href="/categories/etc/" style="color: inherit;">기타</a>
         </span>
@@ -96,8 +96,8 @@
         </ul>
         <ul>
             {% for category in site.categories %}
-                {% if category[0] == "video-editing" %}
-                    <li><a href="/categories/video-editing" class=""> 영상편집 ({{category[1].size}})</a></li>
+                {% if category[0] == "video" %}
+                    <li><a href="/categories/video" class=""> 영상편집 ({{category[1].size}})</a></li>
                 {% endif %}
             {% endfor %}
         </ul>
