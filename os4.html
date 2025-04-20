@@ -1,376 +1,268 @@
 <!-- 티스토리 HTML 모드 포스트 -->
 <div class="post-content">
     <div class="post-header">
-    <h1 class="post-title">[운영체제/OS] 2-1. 프로세스(Processes)</h1>
-    <div class="post-meta"><span class="post-date">2025년 3월 25일</span> <span class="post-category">카테고리: <a href="#">OS</a></span> <span class="post-tags">태그: <a href="#">운영체제</a>, <a href="#">OS</a>, <a href="#">Computer Science</a>, <a href="#">Process</a>, <a href="#">PCB</a></span></div>
+    <h1 class="post-title">[운영체제/OS] 4. 프로세서 스케줄링 (Scheduling)</h1>
+    <div class="post-meta"><span class="post-date">2025년 3월 25일</span> <span class="post-category">카테고리: <a href="#">OS</a></span> <span class="post-tags">태그: <a href="#">운영체제</a>, <a href="#">OS</a>, <a href="#">Computer Science</a>, <a href="#">Scheduling</a></span></div>
     </div>
     <div class="post-summary">
-    <p data-ke-size="size16">이 글에서는 운영체제의 핵심 개념인 프로세스(Process)의 정의, 구성 요소, 메모리 구조, 상태 관리, 스케줄링, 그리고 프로세스 전환에 대해 살펴봅니다.</p>
+    <p data-ke-size="size16">이 글에서는 운영체제의 프로세서 스케줄링 개념, 스케줄링 기준, 프로세스 동작 특성, 그리고 다양한 스케줄링 알고리즘에 대해 살펴봅니다.</p>
     </div>
     <!-- 목차 -->
     <div class="toc">
     <h2 data-ke-size="size26">목차</h2>
     <ul style="list-style-type: disc;" data-ke-list-type="disc">
-    <li><a href="#1">1. 프로세스의 개념</a>
+    <li><a href="#1">1. 스케줄링 기본 개념</a>
     <ul style="list-style-type: disc;" data-ke-list-type="disc">
-    <li><a href="#1.1">1.1 프로세스란?</a></li>
-    <li><a href="#1.2">1.2 프로세스 문맥(Context)</a></li>
+    <li><a href="#1.1">1.1 Queueing model</a></li>
+    <li><a href="#1.2">1.2 선점형 vs 비선점형 서버</a></li>
     </ul>
     </li>
-    <li><a href="#2">2. 프로세스 메모리 구조</a>
+    <li><a href="#2">2. CPU 스케줄링 기준</a>
     <ul style="list-style-type: disc;" data-ke-list-type="disc">
-    <li><a href="#2.1">2.1 메모리 세그먼트</a></li>
-    <li><a href="#2.2">2.2 메모리 레이아웃 예제</a></li>
+    <li><a href="#2.1">2.1 스케줄링 기준</a></li>
+    <li><a href="#2.2">2.2 최적화 기준</a></li>
     </ul>
     </li>
-    <li><a href="#3">3. 프로세스 제어 구조</a>
+    <li><a href="#3">3. 프로세스 동작 특성</a>
     <ul style="list-style-type: disc;" data-ke-list-type="disc">
-    <li><a href="#3.1">3.1 프로세스 제어 블록 (PCB)</a></li>
+    <li><a href="#3.1">3.1 CPU-I/O 사이클</a></li>
     </ul>
     </li>
-    <li><a href="#4">4. OS의 데이터 구조</a>
+    <li><a href="#4">4. 스케줄링 알고리즘</a>
     <ul style="list-style-type: disc;" data-ke-list-type="disc">
-    <li><a href="#4.1">4.1 시스템 테이블</a></li>
+    <li><a href="#4.1">4.1 FCFS (First-Come First-Served)</a></li>
+    <li><a href="#4.2">4.2 Round Robin (RR)</a></li>
+    <li><a href="#4.3">4.3 SJF (Shortest Job First)</a></li>
+    <li><a href="#4.4">4.4 다단계 큐 스케줄링</a></li>
+    <li><a href="#4.5">4.5 다단계 피드백 큐</a></li>
     </ul>
     </li>
-    <li><a href="#5">5. 프로세스 상태</a>
+    <li><a href="#5">5. 현대 운영체제의 스케줄링</a>
     <ul style="list-style-type: disc;" data-ke-list-type="disc">
-    <li><a href="#5.1">5.1 5단계 프로세스 상태 모델</a></li>
+    <li><a href="#5.1">5.1 Linux 스케줄링</a></li>
+    <li><a href="#5.2">5.2 Windows 스케줄링</a></li>
     </ul>
     </li>
-    <li><a href="#6">6. 프로세스 스케줄링</a>
+    <li><a href="#6">6. 스케줄링 알고리즘 평가</a>
     <ul style="list-style-type: disc;" data-ke-list-type="disc">
-    <li><a href="#6.1">6.1 스케줄링 종류</a></li>
-    </ul>
-    </li>
-    <li><a href="#7">7. 프로세스 전환</a>
-    <ul style="list-style-type: disc;" data-ke-list-type="disc">
-    <li><a href="#7.1">7.1 프로세스 전환의 개념</a></li>
-    <li><a href="#7.2">7.2 모드 전환과 프로세스 전환</a></li>
-    <li><a href="#7.3">7.3 전환 특성</a></li>
-    <li><a href="#7.4">7.4 전환 오버헤드</a></li>
+    <li><a href="#6.1">6.1 평가 방법</a></li>
     </ul>
     </li>
     </ul>
     </div>
     <!-- 본문 시작 -->
     <div class="post-body">
-    <h2 id="1" data-ke-size="size26">1. 프로세스의 개념</h2>
+    <h2 id="1" data-ke-size="size26">1. 스케줄링 기본 개념</h2>
     <div class="interview-tip">
-    <p data-ke-size="size16"><b>면접 대비</b>: 프로세스의 정의와 구성 요소는 OS 관련 기술 면접에서 매우 자주 등장하는 핵심 질문입니다.</p>
+    <p data-ke-size="size16"><b>면접 대비</b>: CPU 스케줄링의 목적과 기준은 OS 면접의 필수 주제입니다.</p>
     </div>
-    <h3 id="1.1" data-ke-size="size23">1.1 프로세스란?</h3>
+    <h3 id="1.1" data-ke-size="size23">1.1 Queueing model</h3>
     <ul style="list-style-type: disc;" data-ke-list-type="disc">
-    <li><b>정의</b>: 실행 중인 프로그램의 인스턴스</li>
-    <li><b>구성 요소</b>:
+    <li>서버-요청 모델
+    <ul style="list-style-type: disc;" data-ke-list-type="disc">
+    <li>&nbsp; CPU-프로세스</li>
+    <li>&nbsp; 디스크-I/O</li>
+    <li>&nbsp; 프린터-작업</li>
+    </ul>
+    </li>
+    </ul>
+    <h3 id="1.2" data-ke-size="size23">1.2 선점형 vs 비선점형 서버</h3>
+    <ul style="list-style-type: disc;" data-ke-list-type="disc">
+    <li><b>비선점형(Nonpreemptible)</b>
+    <ul style="list-style-type: disc;" data-ke-list-type="disc">
+    <li>&nbsp; 비선점 스케줄링만 허용</li>
+    <li>&nbsp; 예: 디스크, 프린터</li>
+    </ul>
+    </li>
+    <li><b>선점형(Preemptible)</b>
+    <ul style="list-style-type: disc;" data-ke-list-type="disc">
+    <li>&nbsp; 선점/비선점 스케줄링 모두 허용</li>
+    <li>&nbsp; 예: CPU</li>
+    </ul>
+    </li>
+    </ul>
+    <h2 id="2" data-ke-size="size26">2. CPU 스케줄링 기준</h2>
+    <h3 id="2.1" data-ke-size="size23">2.1 스케줄링 기준</h3>
     <ol style="list-style-type: decimal;" data-ke-list-type="decimal">
-    <li><b>이미지(Images)</b>
-    <ul style="list-style-type: circle;" data-ke-list-type="circle">
-    <li>&nbsp; 코드(Code): 기계어 명령어</li>
-    <li>&nbsp; 데이터(Data): 변수들</li>
-    <li>&nbsp; 스택(Stack): 함수 호출 상태</li>
-    <li>&nbsp; 힙(Heap): 동적 메모리</li>
-    </ul>
-    </li>
-    <li><b>프로세스 문맥(Process Context)</b></li>
-    </ol>
-    </li>
-    </ul>
-    <h3 id="1.2" data-ke-size="size23">1.2 프로세스 문맥(Context)</h3>
-    <ol style="list-style-type: decimal;" data-ke-list-type="decimal">
-    <li><b>프로그램 문맥</b>
+    <li><b>CPU 중심 (시스템)</b>
     <ul style="list-style-type: disc;" data-ke-list-type="disc">
-    <li>&nbsp; 데이터 레지스터</li>
-    <li>&nbsp; 프로그램 카운터</li>
-    <li>&nbsp; 스택 포인터</li>
+    <li>&nbsp; CPU 이용률: CPU를 최대한 바쁘게 유지</li>
+    <li>&nbsp; 처리량: 단위 시간당 완료되는 프로세스 수</li>
     </ul>
     </li>
-    <li><b>커널 문맥</b>
+    <li><b>프로세스 중심 (사용자)</b>
     <ul style="list-style-type: disc;" data-ke-list-type="disc">
-    <li>&nbsp; pid, gid, sid</li>
-    <li>&nbsp; 환경 변수</li>
-    <li>&nbsp; VM 구조(페이징 테이블)</li>
-    <li>&nbsp; 열린 파일들</li>
-    <li>&nbsp; 시그널 핸들러</li>
+    <li>&nbsp; 반환 시간: 특정 프로세스 실행에 걸리는 시간</li>
+    <li>&nbsp; 대기 시간: ready 큐에서 대기한 시간</li>
+    <li>&nbsp; 응답 시간: 요청 제출부터 첫 응답까지의 시간</li>
     </ul>
     </li>
     </ol>
-    <h2 id="2" data-ke-size="size26">2. 프로세스 메모리 구조</h2>
-    <h3 id="2.1" data-ke-size="size23">2.1 메모리 세그먼트</h3>
+    <h3 id="2.2" data-ke-size="size23">2.2 최적화 기준</h3>
+    <ul style="list-style-type: disc;" data-ke-list-type="disc">
+    <li>최대화: CPU 이용률, 처리량</li>
+    <li>최소화: 반환 시간, 대기 시간, 응답 시간</li>
+    </ul>
+    <h2 id="3" data-ke-size="size26">3. 프로세스 동작 특성</h2>
     <div class="interview-tip">
-    <p data-ke-size="size16"><b>면접 대비</b>: 프로세스의 메모리 구조는 메모리 관리와 관련된 면접 질문에서 필수적인 내용입니다.</p>
+    <p data-ke-size="size16"><b>면접 대비</b>: CPU-bound와 I/O-bound 프로세스의 특징과 차이점을 이해하는 것이 중요합니다.</p>
     </div>
-    <ol style="list-style-type: decimal;" data-ke-list-type="decimal">
-    <li><b>Code Segment</b>
+    <h3 id="3.1" data-ke-size="size23">3.1 CPU-I/O 사이클</h3>
     <ul style="list-style-type: disc;" data-ke-list-type="disc">
-    <li>&nbsp; 실행 코드가 저장</li>
-    <li>&nbsp; 일반적으로 읽기 전용</li>
+    <li>프로세스는 CPU 사용과 I/O를 반복적으로 수행</li>
+    <li>CPU burst와 I/O burst의 반복</li>
+    <li>CPU-bound 프로세스는 I/O-bound 프로세스보다 긴 CPU burst</li>
     </ul>
-    </li>
-    <li><b>Data Segment</b>
-    <ul style="list-style-type: disc;" data-ke-list-type="disc">
-    <li>&nbsp; Initialized data segment</li>
-    <li>&nbsp; Uninitialized data segment (BSS)
-    <ul style="list-style-type: disc;" data-ke-list-type="disc">
-    <li>&nbsp; 커널이 프로그램 시작 전 0으로 초기화</li>
-    </ul>
-    </li>
-    </ul>
-    </li>
-    <li><b>Stack</b>
-    <ul style="list-style-type: disc;" data-ke-list-type="disc">
-    <li>&nbsp; 자동 변수</li>
-    <li>&nbsp; 임시 변수</li>
-    <li>&nbsp; 리턴 주소</li>
-    <li>&nbsp; 호출자의 환경(registers)</li>
-    </ul>
-    </li>
-    <li><b>Heap</b>
-    <ul style="list-style-type: disc;" data-ke-list-type="disc">
-    <li>&nbsp; 동적으로 할당된 메모리</li>
-    </ul>
-    </li>
-    </ol>
-    <div class="image-container"><img class="post-image" src="https://blog.kakaocdn.net/dn/lBebs/btsNjOYJdnG/RQM0s6wsWZtsvokJ27RnXk/img.png" alt="프로세스 메모리 세그먼트 구조" />
-    <p class="image-caption" data-ke-size="size16">프로세스 메모리 세그먼트 구조</p>
+    <div class="image-container"><img class="post-image" src="/../../assets/images/2025-03-25-OS_4/CPUIO.png" alt="CPU-I/O 사이클" />
+    <p class="image-caption" data-ke-size="size16">CPU-I/O 사이클</p>
     </div>
-    <h3 id="2.2" data-ke-size="size23">2.2 메모리 레이아웃 예제</h3>
-    <pre class="cpp"><code>long array[100];
-    long bufsize = 100;
-    
-    int main(void) {
-        int i;
-        char* buf;
-        i = 10;
-        buf = f1(i);
-        return(0);
-    }
-    
-    char* f1(int n) {
-        printf("%d\n", i);
-        return malloc(bufsize);
-    }</code></pre>
-    <h2 id="3" data-ke-size="size26">3. 프로세스 제어 구조</h2>
-    <h3 id="3.1" data-ke-size="size23">3.1 프로세스 제어 블록 (PCB)</h3>
+    <h2 id="4" data-ke-size="size26">4. 스케줄링 알고리즘</h2>
+    <h3 id="4.1" data-ke-size="size23">4.1 FCFS (First-Come First-Served)</h3>
     <div class="interview-tip">
-    <p data-ke-size="size16"><b>면접 대비</b>: PCB는 프로세스 관리의 핵심 자료구조로, OS 면접에서 자주 다루어지는 주제입니다.</p>
+    <p data-ke-size="size16"><b>면접 대비</b>: 가장 기본적인 스케줄링 알고리즘으로, convoy effect를 설명할 수 있어야 합니다.</p>
     </div>
     <ul style="list-style-type: disc;" data-ke-list-type="disc">
-    <li><b>정의</b>: 프로세스와 관련된 정보를 저장하는 커널의 핵심 자료구조</li>
-    <li><b>특징</b>: 모든 프로세스마다 하나씩 존재</li>
-    <li><b>구성 요소</b>:
-    <ol style="list-style-type: decimal;" data-ke-list-type="decimal">
-    <li><b>이미지 정보</b>
+    <li><b>원리</b>: 가장 오래 대기한 프로세스 선택</li>
+    <li><b>특징</b>: 비선점형</li>
+    <li><b>문제점</b>
     <ul style="list-style-type: disc;" data-ke-list-type="disc">
-    <li>&nbsp; 코드 세그먼트</li>
-    <li>&nbsp; 데이터 세그먼트</li>
-    <li>&nbsp; 스택</li>
-    <li>&nbsp; 힙</li>
+    <li>&nbsp; CPU 독점 가능성</li>
+    <li>&nbsp; CPU-bound 프로세스 선호</li>
+    <li>&nbsp; I/O 장치 활용도 저하</li>
     </ul>
     </li>
-    <li><b>프로세스 문맥</b>
+    </ul>
+    <h3 id="4.2" data-ke-size="size23">4.2 Round Robin (RR)</h3>
     <ul style="list-style-type: disc;" data-ke-list-type="disc">
-    <li>&nbsp; 프로그램 문맥</li>
-    <li>&nbsp; 커널 문맥</li>
-    </ul>
-    </li>
-    </ol>
-    </li>
-    </ul>
-    <h2 id="4" data-ke-size="size26">4. OS의 데이터 구조</h2>
-    <h3 id="4.1" data-ke-size="size23">4.1 시스템 테이블</h3>
-    <ol style="list-style-type: decimal;" data-ke-list-type="decimal">
-    <li><b>메모리 데이터 구조</b>
+    <li><b>원리</b>: FCFS + 시간 할당량</li>
+    <li><b>특징</b>
     <ul style="list-style-type: disc;" data-ke-list-type="disc">
-    <li>&nbsp; 프로세스별 메모리 할당 정보</li>
-    <li>&nbsp; 가상 메모리 관리 정보</li>
-    <li>&nbsp; 공유 메모리 영역의 보호 속성</li>
+    <li>&nbsp; 시분할 환경에 적합</li>
+    <li>&nbsp; 문맥 교환 오버헤드 발생</li>
     </ul>
     </li>
-    <li><b>파일 데이터 구조</b>
+    <li><b>시간 할당량 설정</b>
     <ul style="list-style-type: disc;" data-ke-list-type="disc">
-    <li>&nbsp; 파일 존재 여부</li>
-    <li>&nbsp; 보조 기억장치상의 위치</li>
-    <li>&nbsp; 현재 상태</li>
-    <li>&nbsp; 속성 정보</li>
-    </ul>
-    </li>
-    <li><b>I/O 데이터 구조</b>
-    <ul style="list-style-type: disc;" data-ke-list-type="disc">
-    <li>&nbsp; I/O 장치 가용성</li>
-    <li>&nbsp; I/O 작업 상태</li>
-    <li>&nbsp; 메모리 전송 위치</li>
-    </ul>
-    </li>
-    <li><b>프로세스 데이터 구조 (PCB)</b>
-    <ul style="list-style-type: disc;" data-ke-list-type="disc">
-    <li>&nbsp; 프로세스 위치</li>
-    <li>&nbsp; 프로세스 관리 속성
-    <ul style="list-style-type: disc;" data-ke-list-type="disc">
-    <li>&nbsp; 프로세스 ID</li>
-    <li>&nbsp; 프로세스 상태</li>
-    <li>&nbsp; 메모리 위치 등</li>
+    <li>&nbsp; 문맥 교환 시간보다 충분히 커야 함</li>
+    <li>&nbsp; 일반적인 상호작용보다 커야 함</li>
     </ul>
     </li>
     </ul>
-    </li>
-    </ol>
-    <h2 id="5" data-ke-size="size26">5. 프로세스 상태</h2>
-    <h3 id="5.1" data-ke-size="size23">5.1 5단계 프로세스 상태 모델</h3>
+    <h3 id="4.3" data-ke-size="size23">4.3 SJF (Shortest Job First)</h3>
     <div class="interview-tip">
-    <p data-ke-size="size16"><b>면접 대비</b>: 프로세스 상태와 상태 전이는 OS 동작 이해의 기본이 되는 매우 중요한 개념입니다.</p>
+    <p data-ke-size="size16"><b>면접 대비</b>: 평균 대기 시간 관점에서 최적이지만, 실제 구현의 어려움을 설명할 수 있어야 합니다.</p>
     </div>
-    <ol style="list-style-type: decimal;" data-ke-list-type="decimal">
-    <li><b>생성 (new)</b>
     <ul style="list-style-type: disc;" data-ke-list-type="disc">
-    <li>&nbsp; 프로세스가 생성되는 중</li>
+    <li><b>원리</b>: 가장 짧은 CPU burst 시간 예측</li>
+    <li><b>유형</b>
+    <ul style="list-style-type: disc;" data-ke-list-type="disc">
+    <li>&nbsp; 비선점형 SJF</li>
+    <li>&nbsp; 선점형 SJF (SRTF: Shortest Remaining Time First)</li>
     </ul>
     </li>
-    <li><b>준비 (ready)</b>
+    <li><b>특징</b>
     <ul style="list-style-type: disc;" data-ke-list-type="disc">
-    <li>&nbsp; 프로세서 할당을 기다리는 상태</li>
+    <li>&nbsp; 최적의 평균 대기 시간</li>
+    <li>&nbsp; CPU burst 예측의 어려움</li>
+    <li>&nbsp; 기아 현상 가능성</li>
     </ul>
     </li>
-    <li><b>실행 (running)</b>
+    </ul>
+    <h3 id="4.4" data-ke-size="size23">4.4 다단계 큐 스케줄링 (Multilevel Queue)</h3>
     <ul style="list-style-type: disc;" data-ke-list-type="disc">
-    <li>&nbsp; 명령어들이 실행되는 상태</li>
+    <li><b>원리</b>: 여러 개의 준비 큐를 다른 알고리즘으로 스케줄링</li>
+    <li><b>특징</b>
+    <ul style="list-style-type: disc;" data-ke-list-type="disc">
+    <li>&nbsp; 각 큐마다 다른 스케줄링 알고리즘</li>
+    <li>&nbsp; 큐 간 스케줄링 필요</li>
     </ul>
     </li>
-    <li><b>대기 (blocked/waiting)</b>
-    <ul style="list-style-type: disc;" data-ke-list-type="disc">
-    <li>&nbsp; I/O 완료 등의 이벤트를 기다리는 상태</li>
     </ul>
-    </li>
-    <li><b>종료 (exit/terminated)</b>
-    <ul style="list-style-type: disc;" data-ke-list-type="disc">
-    <li>&nbsp; 실행이 완료된 상태</li>
-    </ul>
-    </li>
-    </ol>
-    <div class="image-container"><img class="post-image" src="https://blog.kakaocdn.net/dn/mVOxZ/btsNiMATTF0/T2dpjLrGnCDzfaerckn0Qk/img.png" alt="프로세스 상태 다이어그램" />
-    <p class="image-caption" data-ke-size="size16">프로세스 상태 다이어그램</p>
-    </div>
-    <h2 id="6" data-ke-size="size26">6. 프로세스 스케줄링</h2>
+    <h3 id="4.5" data-ke-size="size23">4.5 다단계 피드백 큐 (MLFQ)</h3>
     <div class="note">
-    <p data-ke-size="size16"><b>참고</b>: 자세한 내용은 Lecture 5에서 다룰 예정입니다.</p>
+    <p data-ke-size="size16"><b>참고</b>: MLFQ는 현대 OS에서 가장 널리 사용되는 스케줄링 방식입니다.</p>
     </div>
-    <h3 id="6.1" data-ke-size="size23">6.1 스케줄링 종류</h3>
+    <ul style="list-style-type: disc;" data-ke-list-type="disc">
+    <li><b>원리</b>
+    <ul style="list-style-type: disc;" data-ke-list-type="disc">
+    <li>&nbsp; 프로세스가 큐 간 이동 가능</li>
+    <li>&nbsp; 동적 우선순위</li>
+    <li>&nbsp; 우선순위 큐들로 구성</li>
+    </ul>
+    </li>
+    </ul>
+    <h2 id="5" data-ke-size="size26">5. 현대 운영체제의 스케줄링</h2>
+    <h3 id="5.1" data-ke-size="size23">5.1 Linux 스케줄링</h3>
+    <ul style="list-style-type: disc;" data-ke-list-type="disc">
+    <li><b>특징</b>
+    <ul style="list-style-type: disc;" data-ke-list-type="disc">
+    <li>&nbsp; 우선순위 기반, 시분할, 선점형</li>
+    <li>&nbsp; POSIX.4 호환</li>
+    <li>&nbsp; 실시간 및 일반 프로세스 지원</li>
+    </ul>
+    </li>
+    <li><b>스케줄링 정책</b>
+    <ul style="list-style-type: disc;" data-ke-list-type="disc">
+    <li>&nbsp; SCHED_FIFO: 고정 우선순위 실시간</li>
+    <li>&nbsp; SCHED_RR: 시간 할당량이 있는 실시간</li>
+    <li>&nbsp; SCHED_OTHER: 일반 프로세스</li>
+    </ul>
+    </li>
+    </ul>
+    <h3 id="5.2" data-ke-size="size23">5.2 Windows 스케줄링</h3>
+    <ul style="list-style-type: disc;" data-ke-list-type="disc">
+    <li><b>32단계 우선순위</b>
+    <ul style="list-style-type: disc;" data-ke-list-type="disc">
+    <li>&nbsp; 실시간 우선순위 (16-31)</li>
+    <li>&nbsp; 가변 우선순위 (1-15)</li>
+    </ul>
+    </li>
+    <li><b>5개 우선순위 클래스</b>
+    <ul style="list-style-type: disc;" data-ke-list-type="disc">
+    <li>&nbsp; High-priority-class</li>
+    <li>&nbsp; Above-normal-priority-class</li>
+    <li>&nbsp; Normal-priority-class</li>
+    <li>&nbsp; Below-normal-priority-class</li>
+    <li>&nbsp; Idle-priority-class</li>
+    </ul>
+    </li>
+    </ul>
+    <h2 id="6" data-ke-size="size26">6. 스케줄링 알고리즘 평가</h2>
+    <h3 id="6.1" data-ke-size="size23">6.1 평가 방법</h3>
     <ol style="list-style-type: decimal;" data-ke-list-type="decimal">
-    <li><b>장기 스케줄링 (Job Scheduling)</b>
+    <li><b>결정적 모델링</b>
     <ul style="list-style-type: disc;" data-ke-list-type="disc">
-    <li>&nbsp; 시스템에 진입할 프로세스 선택</li>
-    <li>&nbsp; 다중 프로그래밍 정도 조절</li>
-    <li>&nbsp; 호출 빈도 낮음 (초, 분 단위)</li>
+    <li>&nbsp; 미리 정의된 작업부하 사용</li>
+    <li>&nbsp; 간단하고 빠름</li>
+    <li>&nbsp; 너무 구체적</li>
     </ul>
     </li>
-    <li><b>단기 스케줄링 (CPU Scheduling)</b>
+    <li><b>큐잉 모델</b>
     <ul style="list-style-type: disc;" data-ke-list-type="disc">
-    <li>&nbsp; 실행할 프로세스 선택</li>
-    <li>&nbsp; CPU 할당</li>
-    <li>&nbsp; 매우 빈번히 호출 (밀리초 단위)</li>
+    <li>&nbsp; 수학적 분석</li>
+    <li>&nbsp; 통계적 접근</li>
     </ul>
     </li>
-    <li><b>중기 스케줄링 (Medium Term Scheduling)</b></li>
-    </ol>
-    <div class="image-container"><img class="post-image" src="https://blog.kakaocdn.net/dn/elaYcJ/btsNghuxNEg/1fl3A969MAnokmQNFeEzq0/img.png" alt="프로세스 스케줄링 다이어그램" />
-    <p class="image-caption" data-ke-size="size16">프로세스 스케줄링 다이어그램</p>
-    </div>
-    <h2 id="7" data-ke-size="size26">7. 프로세스 전환</h2>
-    <h3 id="7.1" data-ke-size="size23">7.1 프로세스 전환의 개념</h3>
-    <div class="interview-tip">
-    <p data-ke-size="size16"><b>면접 대비</b>: 프로세스 전환의 개념과 모드 전환과의 차이점은 면접에서 자주 다루어지는 주제입니다.</p>
-    </div>
+    <li><b>시뮬레이션 분석</b>
     <ul style="list-style-type: disc;" data-ke-list-type="disc">
-    <li><b>정의</b>: 실행 중인 프로세스가 interrupted 되고 운영체제가 다른 프로세스를 실행 상태로 전환하는 과정</li>
-    <li><b>이중 모드 동작</b>:
-    <ul style="list-style-type: disc;" data-ke-list-type="disc">
-    <li>현대 운영체제는 하드웨어 보호를 위해 이중 실행 모드 사용</li>
-    <li>사용자 모드: 제한된 권한으로 일반 프로그램 실행</li>
-    <li>커널 모드: 모든 하드웨어 자원과 명령어에 대한 완전한 접근 권한</li>
-    </ul>
-    </li>
-    </ul>
-    <h3 id="7.2" data-ke-size="size23">7.2 모드 전환과 프로세스 전환</h3>
-    <ol style="list-style-type: decimal;" data-ke-list-type="decimal">
-    <li><b>모드 전환 발생 조건</b>
-    <ul style="list-style-type: disc;" data-ke-list-type="disc">
-    <li><b>External Interrupt</b>
-    <ul style="list-style-type: disc;" data-ke-list-type="disc">
-    <li>&nbsp; 타이머 인터럽트 (시간 할당량 만료)</li>
-    <li>&nbsp; I/O 인터럽트 (이벤트 발생)</li>
-    </ul>
-    </li>
-    <li><b>Internal Trap(exception)</b>
-    <ul style="list-style-type: disc;" data-ke-list-type="disc">
-    <li>&nbsp; 페이지 폴트</li>
-    <li>&nbsp; 잘못된 연산 등</li>
-    </ul>
-    </li>
-    <li><b>System Call</b>
-    <ul style="list-style-type: disc;" data-ke-list-type="disc">
-    <li>&nbsp; I/O 작업</li>
-    <li>&nbsp; fork 등 프로세스 생성</li>
-    </ul>
-    </li>
-    </ul>
-    </li>
-    <li><b>모드 전환 처리</b>
-    <ul style="list-style-type: disc;" data-ke-list-type="disc">
-    <li>&nbsp; 현재 프로세서 상태 저장 (레지스터, 플래그 등)</li>
-    <li>&nbsp; 적절한 처리 루틴의 주소로 프로그램 카운터 설정</li>
-    <li>&nbsp; 커널 모드로 전환하여 특권 명령어 실행 가능</li>
-    </ul>
-    </li>
-    <li><b>프로세스 전환 과정</b>
-    <ul style="list-style-type: disc;" data-ke-list-type="disc">
-    <li>&nbsp; 프로그램 문맥 저장</li>
-    <li>&nbsp; 현재 프로세스 상태 변경 (실행→준비/대기/종료)</li>
-    <li>&nbsp; PCB를 적절한 큐로 이동</li>
-    <li>&nbsp; 스케줄러를 통한 새로운 프로세스 선택</li>
-    <li>&nbsp; 선택된 프로세스의 상태를 실행으로 변경</li>
-    <li>&nbsp; 메모리 관리 구조 갱신</li>
-    <li>&nbsp; 새 프로세스의 프로그램 문맥 복원</li>
+    <li>&nbsp; 실제 시스템 추적 데이터 사용</li>
+    <li>&nbsp; 가장 현실적인 평가 방법</li>
     </ul>
     </li>
     </ol>
-    <h3 id="7.3" data-ke-size="size23">7.3 전환 특성</h3>
-    <ol style="list-style-type: decimal;" data-ke-list-type="decimal">
-    <li><b>모드 전환만 발생하는 경우</b>
-    <ul style="list-style-type: disc;" data-ke-list-type="disc">
-    <li>&nbsp; 인터럽트/예외/시스템 콜 처리 후 동일 프로세스 재개</li>
-    <li>&nbsp; 상대적으로 적은 오버헤드</li>
-    </ul>
-    </li>
-    <li><b>프로세스 전환이 동반되는 경우</b>
-    <ul style="list-style-type: disc;" data-ke-list-type="disc">
-    <li>&nbsp; 현재 프로세스가 다른 상태로 이동할 때 발생</li>
-    <li>&nbsp; 상당한 추가 작업 필요</li>
-    <li>&nbsp; 시스템 성능에 큰 영향</li>
-    </ul>
-    </li>
-    </ol>
-    <h3 id="7.4" data-ke-size="size23">7.4 전환 오버헤드</h3>
-    <ul style="list-style-type: disc;" data-ke-list-type="disc">
-    <li>전환 중에는 유용한 작업 수행 불가</li>
-    <li>운영체제가 복잡할수록 전환 작업량 증가</li>
-    <li>효율적인 전환을 위한 하드웨어 지원
-    <ul style="list-style-type: disc;" data-ke-list-type="disc">
-    <li>예: Sun UltraSPARC의 다중 레지스터 세트</li>
-    </ul>
-    </li>
-    </ul>
     </div>
     <div class="reference">
     <h2 data-ke-size="size26">참고 자료</h2>
     <ul style="list-style-type: disc;" data-ke-list-type="disc">
-    <li>A. Silberschatz의 운영체제 개론</li>
     <li>Operating System Concepts (10th Edition)</li>
+    <li>Understanding the Linux Kernel</li>
+    <li>Windows Internals (7th Edition)</li>
     </ul>
     </div>
     <div class="post-footer">
     <div class="post-navigation">
-    <div class="prev-post"><a href="#">이전 글: 운영체제(Operating System) 개요</a></div>
-    <div class="next-post"><a href="#">다음 글: 프로세스 생성과 IPC</a></div>
+    <div class="prev-post"><a href="#">이전 글: 스레드(Threads)</a></div>
+    <div class="next-post"><a href="#">다음 글: 프로세스 동기화</a></div>
     </div>
     <div class="post-share"><span>공유하기:</span> <a class="share-link" href="#">페이스북</a> <a class="share-link" href="#">트위터</a> <a class="share-link" href="#">카카오톡</a></div>
     </div>
@@ -700,111 +592,6 @@
             margin-bottom: 10px;
         }
     }
-    
-    /* 섹션 구분 스타일 */
-    .post-body h2 {
-        color: #333;
-        border-bottom: 2px solid #eee;
-        padding-bottom: 10px;
-        margin-top: 40px;
-        font-size: 1.8em;
-        position: relative;
-        padding-left: 0;
-    }
-
-    .post-body h3 {
-        color: #444;
-        margin-top: 30px;
-        font-size: 1.4em;
-        position: relative;
-        padding-left: 0;
-    }
-
-    /* 중요 개념 강조 */
-    .key-term {
-        background-color: #e3f2fd;
-        padding: 2px 8px;
-        border-radius: 4px;
-        border-left: 4px solid #2196f3;
-        font-weight: bold;
-        color: #1976d2;
-    }
-
-    /* 이미지 캡션 스타일 */
-    .image-caption {
-        background-color: #f8f9fa;
-        padding: 10px 15px;
-        border-radius: 4px;
-        margin-top: 10px;
-        font-style: italic;
-        border-left: 4px solid #6c757d;
-        color: #495057;
-    }
-
-    /* 코드 블록 스타일 */
-    pre {
-        background: linear-gradient(to right, #f8f9fa, #e9ecef);
-        padding: 15px;
-        border-radius: 8px;
-        overflow-x: auto;
-        border: 1px solid #e9ecef;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    }
-
-    code {
-        font-family: 'Consolas', 'Monaco', monospace;
-        font-size: 0.9em;
-        color: #333;
-    }
-
-    /* 참고 자료 섹션 스타일 */
-    .reference {
-        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-        padding: 25px;
-        border-radius: 8px;
-        margin-top: 40px;
-        border: 1px solid #e9ecef;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-        position: relative;
-    }
-
-    .reference::before {
-        content: "📖";
-        position: absolute;
-        top: 15px;
-        right: 15px;
-        font-size: 1.5em;
-        opacity: 0.2;
-    }
-
-    .reference h2 {
-        color: #333;
-        font-size: 1.5em;
-        margin-top: 0;
-        padding-bottom: 10px;
-        border-bottom: 2px solid #dee2e6;
-    }
-
-    .reference ul {
-        list-style-type: disc;
-        padding-left: 20px;
-    }
-
-    .reference li {
-        position: relative;
-        padding-left: 0;
-        margin-bottom: 10px;
-    }
-
-    .reference li::before {
-        display: none;
-    }
-
-    /* 섹션 구분선 */
-    .section-divider {
-        height: 1px;
-        background: linear-gradient(to right, transparent, #dee2e6, transparent);
-        margin: 40px 0;
-    }
     </style>
     </div>
+</code_block_to_apply_changes_from>

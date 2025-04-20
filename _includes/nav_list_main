@@ -49,24 +49,6 @@
         </ul>
 
         <span class="nav__sub-title">
-          <a href="/categories/project-dev/" style="color: inherit;">개발</a>
-        </span>
-        <ul>
-            {% for category in site.categories %}
-                {% if category[0] == "game" %}
-                    <li><a href="/categories/game" class="">게임제작 ({{category[1].size}})</a></li>
-                {% endif %}
-            {% endfor %}
-        </ul>
-        <ul>
-            {% for category in site.categories %}
-                {% if category[0] == "web" %}
-                    <li><a href="/categories/web" class=""> 웹개발 ({{category[1].size}})</a></li>
-                {% endif %}
-            {% endfor %}
-        </ul>
-
-        <span class="nav__sub-title">
           <a href="/categories/problem-solving/" style="color: inherit;">문제풀이</a>
         </span>
         <ul>
@@ -83,6 +65,24 @@
                 {% endif %}
             {% endfor %}
         </ul>
+
+        <span class="nav__sub-title">
+            <a href="/categories/ai/" style="color: inherit;">인공지능</a>
+          </span>
+          <ul>
+              {% for category in site.categories %}
+                  {% if category[0] == "LLM" %}
+                      <li><a href="/categories/LLM" class=""> LLM ({{category[1].size}})</a></li>
+                  {% endif %}
+              {% endfor %}
+          </ul>
+          <ul>
+              {% for category in site.categories %}
+                  {% if category[0] == "deep-learning" %}
+                      <li><a href="/categories/deep-learning" class=""> 딥러닝 ({{category[1].size}})</a></li>
+                  {% endif %}
+              {% endfor %}
+          </ul>
 
         <span class="nav__sub-title">
           <a href="/categories/etc/" style="color: inherit;">기타</a>
@@ -115,6 +115,24 @@
                 {% endif %}
             {% endfor %}
         </ul>
+
+        <span class="nav__sub-title">
+            <a href="/categories/project-dev/" style="color: inherit;">개발</a>
+          </span>
+          <ul>
+              {% for category in site.categories %}
+                  {% if category[0] == "game" %}
+                      <li><a href="/categories/game" class="">게임제작 ({{category[1].size}})</a></li>
+                  {% endif %}
+              {% endfor %}
+          </ul>
+          <ul>
+              {% for category in site.categories %}
+                  {% if category[0] == "web" %}
+                      <li><a href="/categories/web" class=""> 웹개발 ({{category[1].size}})</a></li>
+                  {% endif %}
+              {% endfor %}
+          </ul>
 
       </li>
       <!--전체 글 수-->

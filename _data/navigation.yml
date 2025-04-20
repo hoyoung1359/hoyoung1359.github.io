@@ -17,14 +17,6 @@ main:
           - title: "데이터베이스"
             url: /categories/DB
       
-      - title: "개발"
-        url: /categories/project-dev/
-        sub_categories:
-          - title: "게임 개발"
-            url: /categories/game
-          - title: "웹 개발"
-            url: /categories/web
-      
       - title: "문제풀이"
         url: /categories/problem-solving/
         sub_categories:
@@ -32,6 +24,14 @@ main:
             url: /categories/baekjoon
           - title: "LeetCode"
             url: /categories/leetcode
+
+      - title: "인공지능"
+        url: /categories/ai/
+        sub_categories:
+          - title: "LLM"
+            url: /categories/LLM
+          - title: "딥러닝"
+            url: /categories/deep-learning
       
       - title: "기타"
         url: /categories/etc/
@@ -44,6 +44,14 @@ main:
             url: /categories/english
           - title: "Mac"
             url: /categories/mac
+
+      - title: "개발"
+        url: /categories/project-dev/
+        sub_categories:
+          - title: "게임 개발"
+            url: /categories/game
+          - title: "웹 개발"
+            url: /categories/web
 
   - title: "태그"
     url: /tags/
